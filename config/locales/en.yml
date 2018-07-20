@@ -5,4 +5,11 @@ en:
       sign_up: "Sign up"
       name: "Your name"
       your_name: "John Kent"
+      password: "Password"
+      password_comfirm: "Password comfirm"
       create: "Create account"
+  sessions:
+    new:
+      log_in: "Log in"
+      new_user: "New user? "
+      sign_up_now: "Sign up now!"
