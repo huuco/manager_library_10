@@ -1,0 +1,11 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+@import "font-awesome";
+@import "bootstrap";
+
+.bg-blueviolet {
+  background-color: blueviolet;
+  padding: 0.25rem 1.5rem;
+}
