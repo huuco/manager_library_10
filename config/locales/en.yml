@@ -1,2 +1,8 @@
 en:
   home: "Home"
+  users:
+    new:
+      sign_up: "Sign up"
+      name: "Your name"
+      your_name: "John Kent"
+      create: "Create account"

@@ -6,52 +6,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <%# if logged_in? %>
-          <ul class="navbar-nav mr-auto">
-            <%# if admin? %>
-              <li class="nav-item">
-                <%#= link_to "Borrows", admin_borrows_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to "Books", admin_books_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to "Categories", admin_categories_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to "Publishers", admin_publishers_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to "Authors", admin_authors_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to "Users", admin_users_path, class: "nav-link" %>
-              </li>
-            <%# else %>
-              <li class="nav-item">
-                <%= link_to "Categories", "categories_path", class: "nav-link" %>
-              </li>
-              <li class="nav-item dropdown">
-                <%#= link_to "Categories", "#", class: "nav-link dropdown-toggle",
-                  data: {toggle: "dropdown"} %>
-                <ul class="dropdown-menu">
-                  <%# @categories.each do |ctg| %>
-                    <li><%#= link_to ctg.title, category_path(ctg) %></li>
-                  <%# end %>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Publishers", "publishers_path", class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Authors", "authors_path", class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Contact us", "#", class: "nav-link text-white" %>
-              </li>
-            <%# end %>
-          </ul>
-          <ul class="navbar-nav mr-3">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to "Publishers", "publishers_path", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Authors", "authors_path", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Contact us", "#", class: "nav-link text-white" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-3">
+          <% if logged_in? %>
             <li class="nav-item dropdown">
               <%= link_to "Tuấn", "#", class: "btn btn-light dropdown-toggle",
                 data: {toggle: "dropdown"} %>
@@ -60,14 +27,15 @@
                 <li><%= link_to "Settings", '#' %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Log out", "logout_path", method: :delete %>
+                  <%= link_to "Log out", log_out_path, method: :delete %>
                 </li>
               </ul>
             </li>
-          </ul>
-        <%# else %>
-          <%#= link_to "Sign in", login_path, class: "form-inline nav-item btn btn-outline-primary" %>
-        <%# end %>
+          <% else %>
+            <%= link_to "Sign up", sign_up_path, class: "form-inline nav-item btn btn-outline-primary" %>
+            <%= link_to "Log in", log_in_path, class: "form-inline nav-item btn btn-outline-primary" %>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
