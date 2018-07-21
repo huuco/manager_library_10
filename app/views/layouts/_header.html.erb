@@ -17,10 +17,10 @@
             <%= link_to "Contact us", "#", class: "nav-link text-white" %>
           </li>
         </ul>
-        <ul class="navbar-nav mr-3">
+        <ul class="navbar-nav">
           <% if logged_in? %>
             <li class="nav-item dropdown">
-              <%= link_to "Tuấn", "#", class: "btn btn-light dropdown-toggle",
+              <%= link_to "Tuấn", "#", class: "text-light dropdown-toggle",
                 data: {toggle: "dropdown"} %>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", "#" %></li>
@@ -32,8 +32,8 @@
               </ul>
             </li>
           <% else %>
-            <%= link_to "Sign up", sign_up_path, class: "form-inline nav-item btn btn-outline-primary" %>
-            <%= link_to "Log in", log_in_path, class: "form-inline nav-item btn btn-outline-primary" %>
+            <%= link_to "Sign up", sign_up_path, class: "form-inline nav-item text-light mr-3" %>
+            <%= link_to "Log in", log_in_path, class: "form-inline nav-item text-light mr-2" %>
           <% end %>
         </ul>
       </div>
