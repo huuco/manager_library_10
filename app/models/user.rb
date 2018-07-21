@@ -10,9 +10,10 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true,
     length: {maximum: Settings.email.maximum}, format: {with: VALID_EMAIL_REGEX}
-            
+         
   before_save {email.downcase!}
   has_secure_password
 
   scope :get_by_role, -> role {where role: role}
+  scope :select_users, ->{select :id, :name, :email, :created_at}
 end
