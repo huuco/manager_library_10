@@ -1,5 +1,20 @@
 en:
   home: "Home"
+  admin:
+    users:
+      index:
+        manage_user: "Manage users"
+        users: "Users"
+        all: "All"
+        managers: "Managers"
+        admins: "Admins"
+        list_user: "List users"
+        name: "Name"
+        email: "Email address"
+        joined: "Joined at"
+        borowed: "Borrowed"
+        borowing: "Borrowing"
+        return: "Return late"
   users:
     new:
       sign_up: "Sign up"

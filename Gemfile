@@ -5,6 +5,7 @@ ruby "2.5.1"
 
 gem "rails", "~> 5.2.0"
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
+gem "config"
 gem "puma", "~> 3.11"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
@@ -12,10 +13,13 @@ gem "coffee-rails", "~> 4.2"
 gem "jbuilder", "~> 2.5"
 gem "bcrypt", "~> 3.1.7"
 gem "i18n"
+gem "kaminari"
+gem "bootstrap4-kaminari-views"
 gem "bootstrap", "~> 4.1.1"
 gem "font-awesome-rails"
 gem "jquery-rails"
 gem "bootsnap", ">= 1.1.0", require: false
+gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
