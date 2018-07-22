@@ -6,19 +6,30 @@
     <div  class="col-md-9">
       <h2 class="my-1"><%= @user.name %></h2>
       <h3 class="my-1"><%= @user.email %></h3>
-      <%= link_to "Assign permission", "edit_admin_user_path(@user)",
-        class: "" %>
-      <%= link_to "Assign permission", "edit_admin_user_path(@user)",
-        class: "" %>
+      <%= link_to t(".follow"), "", class: "btn" %>
+      <% if current_user.admin? %>
+        <div id="role" class="dropdown">
+          <%= button_tag @user.is_role, class: "btn btn-primary dropdown-toggle",
+            data: {toggle: "dropdown"} %>
+          <div class="dropdown-menu">
+            <%= link_to t(".user"), admin_user_path(params.permit().merge(role: 0)),
+              method: :put, remote:true, class: "dropdown-item" %>
+            <%= link_to t(".manager"), admin_user_path(params.permit().merge(role: 1)),
+              method: :put, remote:true, class: "dropdown-item" %>
+            <%= link_to t(".admin"), admin_user_path(params.permit().merge(role: 2)),
+              method: :put, remotusere:true, class: "dropdown-item" %>
+          </div>
+        </div>
+      <% end %>
       <div class="col-md-12 row">
-        <%= link_to "Folowing", "#", class: "mx-2" %>
-        <%= link_to "Folower", "#", class: "mx-2" %>
-        <%= link_to "Books following", "#", class: "mx-2" %>
-        <%= link_to "Authors following", "#", class: "mx-2" %>
-        <%= link_to "Like", "#", class: "mx-2" %>
-        <%= link_to "Borrowed", "#", class: "mx-2" %>
-        <%= link_to "Borrowing", "#", class: "mx-2" %>
-        <%= link_to "Return late", "#", class: "mx-2" %>
+        <%= link_to t(".folowing"), "", class: "mx-2" %>
+        <%= link_to t(".folower"), "", class: "mx-2" %>
+        <%= link_to t(".b_following"), "", class: "mx-2" %>
+        <%= link_to t(".a_following"), "", class: "mx-2" %>
+        <%= link_to t(".like"), "", class: "mx-2" %>
+        <%= link_to t(".borrowed"), "", class: "mx-2" %>
+        <%= link_to t(".borrowing"), "", class: "mx-2" %>
+        <%= link_to t(".return_late"), "", class: "mx-2" %>
       </div>
     </div>
   </div>

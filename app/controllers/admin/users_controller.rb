@@ -29,6 +29,21 @@ class Admin::UsersController < AdminController
       flash[:danger] = t "not_found" + params[:id]
       redirect_to admin_users_path
   end
+
+  def update
+    if current_user.admin?
+      @user = User.find_by id: params[:id]
+      if @user.update_attributes role: params[:role]
+        respond_to do |format|
+          format.html do
+            flash[:success] = t "assigned"
+            redirect_to @user
+          end
+          format.js
+        end
+      end
+    end
+  end
   
   private
 

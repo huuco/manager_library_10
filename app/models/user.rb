@@ -16,4 +16,20 @@ class User < ApplicationRecord
 
   scope :get_by_role, -> role {where role: role}
   scope :select_users, ->{select :id, :name, :email, :created_at}
+
+  def is_role
+    if self.role == 0
+      return I18n.t("admin.users.show.user")
+    else
+      self.role == 1 ? I18n.t("admin.users.show.manager") : I18n.t("admin.users.show.admin")
+    end
+  end
+
+  def admin?
+    self.role == 2 ? true : false
+  end
+
+  def manager?
+    self.role == 0 ? false : true
+  end
 end

@@ -2,6 +2,7 @@ en:
   home: "Home"
   not_found: "Not found user with id: "
   invalid_email_pass: "Invalid email/password combination"
+  assigned: "Assigned new permission!"
   admin:
     users:
       index:
@@ -18,7 +19,22 @@ en:
         borowed: "Borrowed"
         borowing: "Borrowing"
         return: "Return late"
-        
+      new:
+        create_user: "Create new user"
+      show:
+        follow: "Follow"
+        unfollow: "Unfollow"
+        user: "User"
+        manager: "Manager"
+        admin: "Admin"
+        folowing: "Following"
+        folower: "Follower"
+        b_following: "Books following"
+        a_following: "Authors following"
+        like: "Like"
+        borrowed: "Borrowed"
+        borrowing: "Borrowing"
+        return_late: "Return late"
   users:
     new:
       sign_up: "Sign up"
