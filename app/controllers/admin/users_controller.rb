@@ -1,12 +1,19 @@
 class Admin::UsersController < AdminController
   def index
-    if params[:role]
-      @users = User.select_users.get_by_role(params[:role])
-    else
-      @users = User.select_users
+    @users = if params[:search]
+        User.select_users.get_by_name_email params[:search]
+      else
+        User.select_users
+      end
+    unless params[:role] == "" || params[:role].nil?
+      @users = @users.get_by_role params[:role]
     end
     @users = @users.order(created_at: :desc)
       .page(params[:page]).per Settings.pages.per_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -25,7 +32,8 @@ class Admin::UsersController < AdminController
   end
 
   def show
-    return if @user = User.find_by id: params[:id]
+    @user = User.find_by id: params[:id]
+    return if @user
       flash[:danger] = t "not_found" + params[:id]
       redirect_to admin_users_path
   end

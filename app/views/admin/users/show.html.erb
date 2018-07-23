@@ -1,3 +1,4 @@
+<% provide(:title, @user.name) %>
 <div class="row my-3">
   <div class="col-md-12 border border-primary rounded row">
     <div class="col-md-3">
@@ -17,7 +18,7 @@
             <%= link_to t(".manager"), admin_user_path(params.permit().merge(role: 1)),
               method: :put, remote:true, class: "dropdown-item" %>
             <%= link_to t(".admin"), admin_user_path(params.permit().merge(role: 2)),
-              method: :put, remotusere:true, class: "dropdown-item" %>
+              method: :put, remote:true, class: "dropdown-item" %>
           </div>
         </div>
       <% end %>

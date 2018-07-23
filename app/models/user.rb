@@ -16,6 +16,9 @@ class User < ApplicationRecord
 
   scope :get_by_role, -> role {where role: role}
   scope :select_users, ->{select :id, :name, :email, :created_at}
+  scope :get_by_name_email, (lambda do |search|
+    where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%")
+  end)
 
   def is_role
     if self.role == 0

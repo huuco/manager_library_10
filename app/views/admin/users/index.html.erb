@@ -6,13 +6,24 @@
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ol>
 </nav>
-<h5 class="col-md-12"><%= t(".list_user") %>
-  <%= link_to t(".all"), admin_users_path, class: "btn" %>
-  <%= link_to t(".users"), admin_users_path(params.permit().merge(role: 0)), class: "btn" %>
-  <%= link_to t(".managers"), admin_users_path(params.permit().merge(role: 1)), class: "btn" %>
-  <%= link_to t(".admins"), admin_users_path(params.permit().merge(role: 2)), class: "btn" %>
+<div class="col-md-10">
+  <%= form_tag url_for, method: :get, id: "search-users" do %>
+    <div class="form-group">
+      <div class="input-group">
+        <h5><%= label_tag :search, t(".list_user"), class: "mx-2" %></h5>
+        <%= text_field_tag :search, params[:search], class: "form-control" %>
+        <%= link_to t(".all"), "", id: "_all", class: "btn mx-1" %>
+        <%= link_to t(".users"), "", id: "_users", class: "btn mx-1" %>
+        <%= link_to t(".managers"), "", id: "_managers", class: "btn mx-1" %>
+        <%= link_to t(".admins"), "", id: "_admins", class: "btn mx-1" %>
+        <%= hidden_field_tag :role, params[:role], id: "_role" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-2">
   <%= link_to t(".create_user"), new_admin_user_path, class: "btn" %>
-</h5>
+</div>
 <div class="col-md-12">
   <table class="table table-bordered table-hover bg-primary">
     <thead>
@@ -29,6 +40,8 @@
       <%= render @users %>
     </tbody>
   </table>
-  <%= paginate @users, window: 2, theme: "twitter-bootstrap-4",
-    pagination_class: "justify-content-center" %>
+  <div id="pagination">
+  <%= paginate @users, remote:true, window: 2, theme: "twitter-bootstrap-4",
+    pagination_class: "justify-content-center", id: "pagination" %>
+  </div>
 </div>
