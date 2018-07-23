@@ -2,18 +2,18 @@
 <nav aria-label="breadcrumb" class="col-md-12">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
-    <li class="breadcrumb-item"><%= link_to t(".users"), admin_users_path %></li></li>
+    <li class="breadcrumb-item"><%= link_to t("_users"), admin_users_path %></li></li>
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ol>
 </nav>
 <div class="col-md-10">
-  <%= form_tag url_for, method: :get, id: "search-users" do %>
+  <%= form_tag url_for, method: :get, remote: true, id: "search-users" do %>
     <div class="form-group">
       <div class="input-group">
         <h5><%= label_tag :search, t(".list_user"), class: "mx-2" %></h5>
-        <%= text_field_tag :search, params[:search], class: "form-control" %>
+        <%= text_field_tag :search, params[:search], class: "form-control", id: "_search" %>
         <%= link_to t(".all"), "", id: "_all", class: "btn mx-1" %>
-        <%= link_to t(".users"), "", id: "_users", class: "btn mx-1" %>
+        <%= link_to t("_users"), "", id: "_users", class: "btn mx-1" %>
         <%= link_to t(".managers"), "", id: "_managers", class: "btn mx-1" %>
         <%= link_to t(".admins"), "", id: "_admins", class: "btn mx-1" %>
         <%= hidden_field_tag :role, params[:role], id: "_role" %>
@@ -23,6 +23,11 @@
 </div>
 <div class="col-md-2">
   <%= link_to t(".create_user"), new_admin_user_path, class: "btn" %>
+</div>
+<div class="col-md-12">
+  <%= t ".dowload" %>
+  <%= link_to "CSV", "", class: "btn", id: "export-csv" %> |
+  <%= link_to "Excel", "", class: "btn", id: "export-xls" %>
 </div>
 <div class="col-md-12">
   <table class="table table-bordered table-hover bg-primary">

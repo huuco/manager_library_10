@@ -1,3 +1,4 @@
 $("tbody").html("<%= escape_javascript render @users %>")
-$("#pagination").html("<%= escape_javascript(paginate @users, remote:true, window: 2, theme: "twitter-bootstrap-4",
-    pagination_class: "justify-content-center") %>")
+$("#pagination").html("<%= escape_javascript(paginate @users, remote:true,
+  window: 2, theme: "twitter-bootstrap-4",
+  pagination_class: "justify-content-center") %>")

@@ -3,11 +3,15 @@ en:
   not_found: "Not found user with id: "
   invalid_email_pass: "Invalid email/password combination"
   assigned: "Assigned new permission!"
+  categories: "Categories"
+  authors: "Authors"
+  publishers: "Pulishers"
+  _users: "Users"
+  contact_us: "Contact us"
   admin:
     users:
       index:
         manage_user: "Manage users"
-        users: "Users"
         all: "All"
         managers: "Managers"
         admins: "Admins"
