@@ -1,0 +1,33 @@
+<% provide(:title, t(".manage_user")) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
+    <li class="breadcrumb-item"><%= link_to t(".users"), admin_users_path %></li></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+<h5 class="col-md-12"><%= t(".list_user") %>
+  <%= link_to t(".all"), admin_users_path, class: "btn" %>
+  <%= link_to t(".users"), admin_users_path(params.permit().merge(role: 0)), class: "btn" %>
+  <%= link_to t(".managers"), admin_users_path(params.permit().merge(role: 1)), class: "btn" %>
+  <%= link_to t(".admins"), admin_users_path(params.permit().merge(role: 2)), class: "btn" %>
+</h5>
+<div class="col-md-12">
+  <table class="table table-bordered table-hover bg-primary">
+    <thead>
+      <tr class="d-flex text-center">
+        <th class="col-3"><%= t(".name") %></th>
+        <th class="col-4"><%= t(".email") %></th>
+        <th class="col-2"><%= t(".joined") %></th>
+        <th class="col-1"><%= t(".borowed") %></th>
+        <th class="col-1"><%= t(".borowing") %></th>
+        <th class="col-1"><%= t(".return") %></th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <%= render @users %>
+    </tbody>
+  </table>
+  <%= paginate @users, window: 2, theme: "twitter-bootstrap-4",
+    pagination_class: "justify-content-center" %>
+</div>

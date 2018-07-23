@@ -5,9 +5,9 @@
     </div>
     <%= form_for(:session, url: log_in_path) do |f| %>
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: "form-control" %>
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: "form-control" %>
       <br>
       <%= f.submit t(".log_in"), class: "btn btn-primary" %>
     <% end %>
