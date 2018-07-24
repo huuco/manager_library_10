@@ -8,16 +8,35 @@ en:
   publishers: "Pulishers"
   _users: "Users"
   contact_us: "Contact us"
-  delete_confrim: "Are you sure?"
+  delete_confirm: "Are you sure?"
   admin:
     categories:
       index:
+        create_category: "Create new category!"
         manage_category: "Manage categories"
         categories: "Categories"
+        have: "Have "
+        result: " result"
         stt: "#"
         title: "Title"
         books: "Books"
         describe: "Describe"
+      table:
+        no_result: "No result to show"
+        edit: "Edit"
+        delete: "Delete"
+      new:
+        create_ctg: "Create category"
+      edit:
+        edit_ctg: "Edit category"
+      form:
+          create: "Create"
+      update:
+        update_success: "This category is updated"
+      destroy:
+        delete_success: "Category is deleted"
+        delete_fail: "Can't delete this category"
+        ctg_has_books: "This category has books, can't delete it"
     users:
       index:
         manage_user: "Manage users"
@@ -56,6 +75,8 @@ en:
       password: "Password"
       password_comfirm: "Password comfirm"
       create: "Create account"
+    create:
+      welcome: "Welcom to Library, "
   sessions:
     new:
       log_in: "Log in"

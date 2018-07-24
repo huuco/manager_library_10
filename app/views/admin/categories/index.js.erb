@@ -1,0 +1,6 @@
+$("#result").html("<%= escape_javascript(t(".have") +"#{@categories.total_count}"+ t(".result"))%>")
+$("#data-table").html("<%= escape_javascript(render partial: "table",
+  locals: {categories: @categories}) %>")
+$("#pagination").html("<%= escape_javascript(paginate @categories, remote: true,
+  window: 2, theme: "twitter-bootstrap-4",
+  pagination_class: "justify-content-center") %>")

@@ -1,0 +1,17 @@
+<%= form_for [:admin, @category] do |f| %>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :title, t("admin.categories.index.title"), class: "col-md-4" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :describe, t("admin.categories.index.describe"), class: "col-md-4" %>
+      <%= f.text_area :describe, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit t(".create"), class: "btn btn-primary" %>
+  </div>
+<% end %>
