@@ -11,6 +11,7 @@
   <%= link_to t(".users"), admin_users_path(params.permit().merge(role: 0)), class: "btn" %>
   <%= link_to t(".managers"), admin_users_path(params.permit().merge(role: 1)), class: "btn" %>
   <%= link_to t(".admins"), admin_users_path(params.permit().merge(role: 2)), class: "btn" %>
+  <%= link_to t(".create_user"), new_admin_user_path, class: "btn" %>
 </h5>
 <div class="col-md-12">
   <table class="table table-bordered table-hover bg-primary">

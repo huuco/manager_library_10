@@ -1,5 +1,7 @@
 en:
   home: "Home"
+  not_found: "Not found user with id: "
+  invalid_email_pass: "Invalid email/password combination"
   admin:
     users:
       index:
@@ -8,6 +10,7 @@ en:
         all: "All"
         managers: "Managers"
         admins: "Admins"
+        create_user: "Create new user!"
         list_user: "List users"
         name: "Name"
         email: "Email address"
@@ -15,10 +18,11 @@ en:
         borowed: "Borrowed"
         borowing: "Borrowing"
         return: "Return late"
+        
   users:
     new:
       sign_up: "Sign up"
-      name: "Your name"
+      name: "Name"
       your_name: "John Kent"
       password: "Password"
       password_comfirm: "Password comfirm"
