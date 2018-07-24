@@ -1,0 +1,55 @@
+<% provide(:title, t(".manage_category")) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
+    <li class="breadcrumb-item"><%= link_to t(".categories"), admin_categories_path %></li></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+<h5 class="col-md-12"><%= t ".list_ctg" %></h5>
+<div class="col-md-5">
+  <%= form_tag url_for, method: :get do %>
+    <div class="form-group">
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control" %>
+        <%= submit_tag "Search", name: nil, class: "btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-5"></div>
+<div class="col-md-2">
+  <%= link_to t(".create_category"), "new_admin_category_path", class: "btn" %>
+</div>
+<div class="col-md-12">
+  <table class="table table-bordered table-hover bg-primary">
+    <thead>
+      <tr class="d-flex text-center">
+        <th class="col-1"><%= t(".stt") %></th>
+        <th class="col-3"><%= t(".title") %></th>
+        <th class="col-1"><%= t(".books") %></th>
+        <th class="col-6"><%= t(".describe") %></th>
+        <th class="col-1"></th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <% @categories.each.with_index do |ctg, i| %>
+      <tr class="d-flex">
+        <td class="col-1 text-center"><%= i+1 %></td>
+        <td class="col-3"><%= ctg.title %></td>
+        <td class="col-1 text-center"></td>
+        <td class="col-6"><%= ctg.describe %></td>
+        <td class="col-1">
+          <%#= link_to "edit", edit_admin_category_path(ctg) %>
+          <%#= link_to "delete", admin_category_path(ctg), method: :delete,
+            data: {confirm: t("delete_confrm")} %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="pagination">
+    <%= paginate @categories, window: 2, theme: "twitter-bootstrap-4",
+      pagination_class: "justify-content-center", id: "pagination" %>
+  </div>
+</div>
