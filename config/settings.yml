@@ -3,4 +3,5 @@ name:
 email:
   maximum: 255
 pages:
-  user_per: 25
+  per_user: 25
+  per_ctg: 20

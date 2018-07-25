@@ -8,7 +8,16 @@ en:
   publishers: "Pulishers"
   _users: "Users"
   contact_us: "Contact us"
+  delete_confrim: "Are you sure?"
   admin:
+    categories:
+      index:
+        manage_category: "Manage categories"
+        categories: "Categories"
+        stt: "#"
+        title: "Title"
+        books: "Books"
+        describe: "Describe"
     users:
       index:
         manage_user: "Manage users"
