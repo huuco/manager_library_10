@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "users#index"
-    resources :users
-    resources :categories
+    resources :users, :books, :categories, :authors, :publishers
   end
 end
