@@ -35,4 +35,17 @@ class User < ApplicationRecord
   def manager?
     self.role == 0 ? false : true
   end
+
+  def self.to_csv options = {}
+    CSV.generate(options) do |csv|
+      desired_columns = [I18n.t("admin.users.index.name"),
+                         I18n.t("admin.users.index.email"),
+                         I18n.t("admin.users.index.joined")]
+      csv << desired_columns
+      all.each do |user|
+        row = [user.name, user.email, user.created_at.strftime("%d-%m-%Y")]
+        csv << row
+      end
+    end
+  end
 end

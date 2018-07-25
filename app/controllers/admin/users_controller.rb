@@ -1,19 +1,20 @@
 class Admin::UsersController < AdminController
   def index
-    @users = if params[:search]
+    @users = if params[:search].present?
         User.select_users.get_by_name_email params[:search]
       else
         User.select_users
       end
-    unless params[:role] == "" || params[:role].nil?
-      @users = @users.get_by_role params[:role]
-    end
-    @users = @users.order(created_at: :desc)
-      .page(params[:page]).per Settings.pages.per_user
+    @users = @users.get_by_role params[:role] if params[:role].present?
+
     respond_to do |format|
       format.html
       format.js
+      format.csv {send_data @users.to_csv, filename: "list_user.csv"}
+      format.xls
     end
+    @users = @users.order(created_at: :desc)
+                   .page(params[:page]).per Settings.pages.per_user
   end
 
   def new
