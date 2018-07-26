@@ -8,7 +8,7 @@
 </nav>
 <h5 class="col-md-12"><%= t ".list_ctg" %></h5>
 <div class="col-md-5">
-  <%= form_tag url_for, method: :get do %>
+  <%= form_tag url_for, method: :get, remote: true do %>
     <div class="form-group">
       <div class="input-group">
         <%= text_field_tag :search, params[:search], class: "form-control" %>
@@ -19,8 +19,11 @@
 </div>
 <div class="col-md-5"></div>
 <div class="col-md-2">
-  <%= link_to t(".create_category"), "new_admin_category_path", class: "btn" %>
+  <%= link_to t(".create_category"), new_admin_category_path, class: "btn" %>
 </div>
+<h5 id="result" class="col-md-12">
+  <%= t(".have") +"#{@categories.total_count}"+ t(".result") %>
+</h5>
 <div class="col-md-12">
   <table class="table table-bordered table-hover bg-primary">
     <thead>
@@ -32,24 +35,12 @@
         <th class="col-1"></th>
       </tr>
     </thead>
-    <tbody class="bg-white">
-      <% @categories.each.with_index do |ctg, i| %>
-      <tr class="d-flex">
-        <td class="col-1 text-center"><%= i+1 %></td>
-        <td class="col-3"><%= ctg.title %></td>
-        <td class="col-1 text-center"></td>
-        <td class="col-6"><%= ctg.describe %></td>
-        <td class="col-1">
-          <%#= link_to "edit", edit_admin_category_path(ctg) %>
-          <%#= link_to "delete", admin_category_path(ctg), method: :delete,
-            data: {confirm: t("delete_confrm")} %>
-        </td>
-      </tr>
-      <% end %>
+    <tbody class="bg-white" id="data-table">
+      <%= render partial: "table", locals: {categories: @categories} %>
     </tbody>
   </table>
   <div id="pagination">
-    <%= paginate @categories, window: 2, theme: "twitter-bootstrap-4",
+    <%= paginate @categories, remote: true, window: 2, theme: "twitter-bootstrap-4",
       pagination_class: "justify-content-center", id: "pagination" %>
   </div>
 </div>

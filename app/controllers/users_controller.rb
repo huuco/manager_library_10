@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create 
     @user = User.new user_params
     if @user.save
-      flash[:success] = "Welcome to Library"
+      flash[:success] = t ".welcome" + @user.name
       log_in @user
       redirect_to root_path
     else

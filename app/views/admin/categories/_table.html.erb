@@ -1,0 +1,22 @@
+<% if categories.any? %>
+  <% serial_number params[:page].to_i, Settings.pages.per_ctg %>
+  <% categories.each.with_index do |ctg, i| %>
+    <tr class="d-flex">
+      <td class="col-1 text-center"><%= @idx + i+1 %></td>
+      <td class="col-3"><%= ctg.title %></td>
+      <td class="col-1 text-center"><%= ctg.books.length %></td>
+      <td class="col-6"><%= ctg.describe %></td>
+      <td class="col-1">
+        <%= link_to t(".edit"), edit_admin_category_path(ctg) %>
+        <% unless ctg.books.any? %>
+          <%= link_to t(".delete"), admin_category_path(ctg), method: :delete,
+            data: {confirm: t("delete_confirm")} %>
+        <% end %>
+      </td>
+    </tr> 
+  <% end %>
+<% else %>
+  <tr class="d-flex">
+    <td class="col-12 text-center"><%= t ".no_result" %></td>
+  </tr>
+<% end %>

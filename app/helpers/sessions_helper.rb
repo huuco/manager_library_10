@@ -15,4 +15,8 @@ module SessionsHelper
     session.delete :user_id
     @current_user = nil
   end
+
+  def serial_number page, per_page
+    @idx = page == 0 ? 0 : (page - 1) * per_page
+  end
 end
