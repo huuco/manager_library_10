@@ -1,15 +1,18 @@
 class Admin::BooksController < ApplicationController
-  before_action :get_book, except: [:index, :new, :create]
+  before_action :get_book, except: %i(index new create)
 
   def index
-    @books = Book.select_books.page(params[:page]).per Settings.pages.per_book
+    @books = Book.search(params).created_at_desc
+                 .page(params[:page]).per Settings.pages.per_book
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
     @book = Book.new
-    respond_to do |format|
-      format.js
-    end
+    respond_to {|format| format.js}
   end
 
   def create
@@ -24,26 +27,24 @@ class Admin::BooksController < ApplicationController
   end
 
   def show
+    @comments = @book.comments.created_at_desc
   end
 
   def edit
-    respond_to do |format|
-      format.js
-    end
+    respond_to {|format| format.js}
   end
 
   def update
     if @book.update_attributes book_params
       flash[:success] = t ".update_success"
-      redirect_to admin_books_path
     else
       flash[:error] = t ".update_fail"
-      render "edit"
     end
+    redirect_to admin_book_path(@book)
   end
 
   def destroy
-    unless @book.status
+    if @book.status
       if @book.destroy
         flash[:success] = t ".delete_success"
         redirect_to admin_books_url
@@ -60,8 +61,8 @@ class Admin::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :describe, :published_at,
-      :category_id, :author_id, :publisher_id, :picture)
+    params.require(:book).permit :title, :describe, :published_at,
+      :category_id, :author_id, :publisher_id, :picture
   end
 
   def get_book

@@ -19,4 +19,8 @@ module SessionsHelper
   def serial_number page, per_page
     @idx = page == 0 ? 0 : (page - 1) * per_page
   end
+
+  def liked? book_id
+    !current_user.likes.find_by(book_id: book_id).nil?
+  end
 end

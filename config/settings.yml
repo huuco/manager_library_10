@@ -5,3 +5,4 @@ email:
 pages:
   per_user: 25
   per_ctg: 20
+  per_book: 15

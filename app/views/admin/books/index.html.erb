@@ -1,6 +1,4 @@
 <% provide(:title, t(".manage_book")) %>
-<div class="modal col-md-12 row" id="myModal">
-</div>
 <nav aria-label="breadcrumb" class="col-md-12">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
@@ -9,20 +7,44 @@
   </ol>
 </nav>
 <div class="row col-md-12">
-  <div class="col-md-2">
-    <h5>List book: </h5>
+  <div class="col-md-5">
+    <h5 id="result">
+      <%= "#{t(".list_have")} #{@books.total_count} #{t(".books")}" %>
+    </h5>
   </div>
-  <%= link_to content_tag(:i,"", class: "fas fa-search"), "", class: "btn col-md-8" %>
-  <div class="col-md-2">
-    <%= link_to t(".create_book"), new_admin_book_path,
-      remote: true, data: {toggle: "modal", target: "#myModal"},
-      class: "btn btn-primary" %>
+  <div class="col-md-4"></div>
+  <%= link_to content_tag(:i, t(".filter"), class: "fa fa-filter"), "",
+    class: "btn filter-show" %>
+  <%= link_to content_tag(:i, t(".create_book"), class: "fa fa-book"),
+    new_admin_book_path, remote: true, data: {toggle: "modal", target: "#myModal"},
+    class: "btn" %>
+  <div class="col-md-12 filter hidden">
+    <%= form_tag url_for, method: :get, remote: true do %>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="col-md-5">
+          <%= label_tag :search, t(".book_or_author") %>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+          <%= label_tag :ctg_title, t("admin.books.form.category") %>
+          <%= select_tag :ctg_title,
+              options_from_collection_for_select(Category.all, :title, :title),
+              prompt: "Select category", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+          <%= label_tag :pub_name, t("admin.books.form.publisher") %>
+          <%= select_tag :pub_name,
+              options_from_collection_for_select(Publisher.all, :name, :name),
+              prompt: "Select publisher", class: "form-control" %>
+          </div>
+          <%= submit_tag "Search", name: nil, class: "btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
-<div id="result" class="col-md-12">
-  <%= t(".have") +" #{@books.total_count} "+ t(".books") %>
-</div>
-<div class="col-md-12">
+<div class="col-md-12 mt-3">
   <table class="table table-bordered table-hover bg-lightblue">
     <thead>
       <tr class="text-center">
@@ -35,12 +57,12 @@
         <th></th>
       </tr>
     </thead>
-    <tbody class="bg-white">
+    <tbody id="data-table" class="bg-white">
       <%= render partial: "table", locals: {books: @books} %>
     </tbody>
   </table>
   <div id="pagination">
-  <%= paginate @books, window: 2, theme: "twitter-bootstrap-4",
-    pagination_class: "justify-content-center", id: "pagination" %>
+  <%= paginate @books, remote: true, window: 2, theme: "twitter-bootstrap-4",
+    pagination_class: "justify-content-center" %>
   </div>
 </div>

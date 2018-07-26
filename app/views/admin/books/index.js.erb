@@ -1,0 +1,5 @@
+$("#result").html("<%= escape_javascript("#{t(".list_have")} #{@books.total_count} #{t(".books")}")%>")
+$("#data-table").html("<%= escape_javascript(render partial: "table", locals: {books: @books}) %>")
+$("#pagination").html("<%= escape_javascript(paginate @books, remote: true,
+  window: 2, theme: "twitter-bootstrap-4",
+  pagination_class: "justify-content-center") %>")

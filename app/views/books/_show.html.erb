@@ -1,0 +1,61 @@
+<div class="row col-md-12 justify-content-md-between">
+  <div class="col-md-4 order-1 order-md-1 my-4">
+    <% if @book.picture? %>
+      <%= image_tag(@book.picture.url, alt: "Book image", class: "img-fluid d-block") %>
+    <% else %>
+    <%= image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/596.jpg?v=2&w=340&h=497",
+      class: "img-fluid d-block") %>
+    <% end %>
+    <div class="row my-2">
+      <p class="col-md-4"> 
+        <%= @book.follows.count %>
+        <%= link_to t(".folow"), "", class: "col-md-4" %>
+      </p>
+      <p class="col-md-4">IMDb 
+        <%= @book.rates.any? ? @book.rates.average(:point).round(1) : 0 %>
+      </p>
+      <p id="btn-like" class="col-md-4">
+        <% if logged_in? && liked?(@book.id) %>
+          <%= render "likes/unlike"%>
+        <% else %>
+          <%= render "likes/like"%>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row col-md-8 order-1 order-md-2 my-4">
+    <h5 class="my-1 col-md-10">
+      <%= @book.title %> - 
+      <%= link_to @book.author.name, admin_author_path(@book.author), class: "text-dark" %>
+    </h5>
+    <% if logged_in? && current_user.manager? %>
+      <%= link_to content_tag(:i, t(".edit"), class: "fa fa-edit"), edit_admin_book_path,
+        remote: true, class: "col-md-1 btn" %>
+      <%= link_to content_tag(:i, t(".delete"), class: "fa fa-trash-o"), admin_book_path,
+        method: :delete, data: {confirm: t("delete_confirm")}, class: "col-md-1 btn text-danger" %>
+    <% end %>
+    <h6 class="col-md-12">
+      <%= t("admin.books.form.category") %>: <%= @book.category.title %>
+    </h6>
+    <h6 class="col-md-12">
+      <%= t("admin.books.form.published_at") %>: 
+      <%= @book.published_at %> - <%= @book.publisher.name %>
+    </h6>
+    <h6 class="col-md-12"><%= t("admin.books.form.describe") %>: </h6>
+    <div id="book-describe" class="col-md-12 book-describe">
+      <p align="justify"><%= @book.describe %></p>
+    </div>
+    <%= link_to t(".read_more"), "", id: "read-more", class: "col-md-12 text-left hidden" %>
+    <%= link_to t(".show_less"), "", id: "show-less", class: "col-md-12 text-right hidden" %>
+  </div>
+</div>
+<div class="row col-md-12">
+  <div id="comment-form" class="col-md-12">
+    <%= render "comments/comment_form" %>
+  </div>
+  <div id="comments-list" class="col-md-12">
+    <% @comments.each do |cmt| %>
+      <%= render partial: "comments/comment", locals: {comment: cmt} %>
+    <% end %>
+  </div>
+</div>
