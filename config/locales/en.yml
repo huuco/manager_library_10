@@ -10,6 +10,31 @@ en:
   contact_us: "Contact us"
   delete_confirm: "Are you sure?"
   admin:
+    books:
+      form:
+        book_title: "Book title"
+        describe: "Describe"
+        category: "Category"
+        author: "Author"
+        publisher: "Publisher"
+        published_at: "Published at"
+        submit: "Submit"
+      index:
+        manage_book: "Manage book"
+      new:
+        new_book: "New book"
+      create:
+        create_success: "A new book is added"
+        create_fail: "Create failed"
+      edit:
+        edit_book: "Edit book"
+      update:
+        update_success: "This book is updated"
+        update_fail: "Upadate failed"
+      destroy:
+        delete_success: "Book is deleted"
+        delete_fail: "Can't delete this book"
+        not_delete: "This book is borrowing, can't delete it"
     categories:
       index:
         create_category: "Create new category!"

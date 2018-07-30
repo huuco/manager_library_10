@@ -1,0 +1,45 @@
+<%= form_for [:admin, @book] do |f| %>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :title, t(".book_title"), class: "col-md-3" %>
+      <%= f.text_field :title, class: "form-control", placeholder: "Rừng Na Uy" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :describe, t(".describe"), class: "col-md-3" %>
+      <%= f.text_area :describe, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :category, t(".category"), class: "col-md-3" %>
+      <%= f.collection_select :category_id, Category.all, :id, :title, {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :author, t(".author"), class: "col-md-3" %>
+      <%= f.collection_select :author_id, Author.all, :id, :name, {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :publisher, t(".publisher"), class: "col-md-3" %>
+      <%= f.collection_select :publisher_id, Publisher.all, :id, :name, {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :published_at, t(".published_at"), class: "col-md-3" %>
+      <%= f.date_field :published_at, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :picture, t(".picture"), class: "col-md-3" %>
+      <span class="picture"><%= f.file_field :picture %></span>
+    </div>
+  </div>
+  <%= f.submit t(".submit"), class: "btn" %>
+<% end %>

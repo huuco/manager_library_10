@@ -1,0 +1,36 @@
+<% if books.any? %>
+  <% serial_number params[:page].to_i, Settings.pages.per_book %>
+  <% books.each.with_index do |book, i| %>
+    <tr class="text-center">
+      <td><%= @idx + i+1 %></td>
+      <td class="text-justify"><%= link_to book.title, admin_book_path(book),
+        class: "text-dark" %></td>
+      <td><%= link_to book.author.name, admin_author_path(book.author),
+        class: "text-dark" %></td>
+      <td><%= book.published_at %></td>
+      <td>
+      <%if book.picture? %>
+        <%= link_to image_tag(book.picture.url, alt: "Book image", class: "book-img"),
+          admin_book_path(book) %>
+      <% else %>
+      <%= link_to image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/596.jpg?v=2&w=340&h=497",
+        class: "book-img"), admin_book_path(book) %>
+      <% end %>
+      </td>
+      <td><div class="b_describe text-justify"><%= book.describe %></div></td>
+      <td>
+        <%= link_to content_tag(:i,"Edit", class: "far fa-edit"),
+          edit_admin_book_path(book), remote: true, class: "text-dark" %>
+        <% if book.status %>
+          <%= link_to content_tag(:i,"Delete", class: "far fa-trash-alt"),
+            admin_book_path(book), method: :delete, class: "text-danger",
+            data: {confirm: t("delete_confirm")} %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr class="d-flex">
+    <td><%= t "admin.categories.table.no_result" %></td>
+  </tr>
+<% end %>

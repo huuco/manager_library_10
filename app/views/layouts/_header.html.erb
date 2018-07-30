@@ -9,6 +9,9 @@
         <ul class="navbar-nav mr-auto">
           <% if logged_in? && current_user.manager? %>
             <li class="nav-item">
+              <%= link_to t("books"), admin_books_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
               <%= link_to t("categories"), admin_categories_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
