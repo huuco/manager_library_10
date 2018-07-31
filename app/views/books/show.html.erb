@@ -1,0 +1,18 @@
+<% provide(:title, @book.title) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
+    <li class="breadcrumb-item"><%= link_to t("_users"), books_path %></li></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @book.title %></li>
+  </ol>
+</nav>
+<aside class="row col-md-9 border bg-white">
+  <%= render partial: "books/show" %>
+</aside>
+<aside class="row col-md-3">
+  <% @sg_books.each do |book| %>
+    <div class="col-md-10 mx-5">
+      <%= render book %>
+    </div>
+  <% end %>
+</aside>

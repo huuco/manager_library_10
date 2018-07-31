@@ -20,7 +20,10 @@ en:
         published_at: "Published at"
         submit: "Submit"
       index:
-        manage_book: "Manage book"
+        list_have: "List have:"
+        books: "books"
+        manage_book: "Manage books"
+        book_or_author: "Book title or Author"
       new:
         new_book: "New book"
       create:
@@ -92,6 +95,15 @@ en:
         borrowed: "Borrowed"
         borrowing: "Borrowing"
         return_late: "Return late"
+  books:
+    show:
+      read_more: "Read more >>"
+      show_less: "<< Show less"
+  comments:
+    comment:
+      cmt: "Comment"
+      ago: "ago"
+      delete-cmt: "Delete comment?"
   users:
     new:
       sign_up: "Sign up"

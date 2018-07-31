@@ -1,0 +1,30 @@
+.bg-blueviolet {
+  background-color: blueviolet;
+  padding: 0.25rem 1.5rem;
+}
+.bg-lightblue{
+  background-color: #e9ecef !important;
+}
+
+.book-img{
+  height: 10rem;
+}
+.b_describe{
+  width: 25rem;
+  height: 10rem;
+  overflow-y: hidden;
+}
+th, td {
+  vertical-align: middle !important;
+}
+
+.book-describe{
+  height: 16.5rem;
+  overflow: hidden;
+}
+#book-describe p{
+  text-indent: 2rem;
+}
+.hidden{
+  display: none;
+}

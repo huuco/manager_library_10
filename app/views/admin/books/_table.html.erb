@@ -5,11 +5,11 @@
       <td><%= @idx + i+1 %></td>
       <td class="text-justify"><%= link_to book.title, admin_book_path(book),
         class: "text-dark" %></td>
-      <td><%= link_to book.author.name, admin_author_path(book.author),
+      <td><%= link_to book.author_name, admin_author_path(book.author_id),
         class: "text-dark" %></td>
       <td><%= book.published_at %></td>
       <td>
-      <%if book.picture? %>
+      <% if book.picture? %>
         <%= link_to image_tag(book.picture.url, alt: "Book image", class: "book-img"),
           admin_book_path(book) %>
       <% else %>
@@ -19,10 +19,10 @@
       </td>
       <td><div class="b_describe text-justify"><%= book.describe %></div></td>
       <td>
-        <%= link_to content_tag(:i,"Edit", class: "far fa-edit"),
+        <%= link_to content_tag(:i, t(".edit"), class: "fa fa-edit"),
           edit_admin_book_path(book), remote: true, class: "text-dark" %>
         <% if book.status %>
-          <%= link_to content_tag(:i,"Delete", class: "far fa-trash-alt"),
+          <%= link_to content_tag(:i, t(".delete"), class: "fa fa-trash-o"),
             admin_book_path(book), method: :delete, class: "text-danger",
             data: {confirm: t("delete_confirm")} %>
         <% end %>

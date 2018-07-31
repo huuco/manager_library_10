@@ -1,0 +1,3 @@
+<%= @book.likes.count %>
+<%= link_to fa_icon("thumbs-o-up"), book_likes_path(@book), method: :post,
+  remote: true, class: "text-dark" %>
