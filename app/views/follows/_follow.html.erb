@@ -1,0 +1,3 @@
+<%= book.follows.count %>
+<%= link_to fa_icon("eye"), book_follows_path(book), method: :post,
+  remote: true, rel: "tooltip", title: t(".follow"), class: "text-dark" %>

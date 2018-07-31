@@ -25,4 +25,15 @@ class Book < ApplicationRecord
   scope :suggest_books, (lambda do |book|
     where("category_id = ? AND id != ?", book.category_id, book.id).sample(3)
   end)
+  scope :new_books, -> {order(created_at: :desc).limit 6}
+  scope :outstanding_books, (lambda do
+    joins(:likes)
+    .where("DATE(likes.created_at) BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE()")
+    .group("books.id").order("count(*) desc").limit 4
+  end)
+  scope :most_borrow_books, (lambda do
+    joins(:borrows)
+    .where("DATE(borrows.created_at) BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE()")
+    .group("books.id").order("count(*) desc").limit 6
+  end)
 end

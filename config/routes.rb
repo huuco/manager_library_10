@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   post "log_in", to: "sessions#create"
   delete "log_out", to: "sessions#destroy"
   
-  resources :books, only: [:show] do
+  resources :categories, :authors, :publishers, only: %i(index show)
+  resources :books, only: [:show, :index] do
     resources :comments, only: %i(create update destroy)
     resources :likes, only: %i(create destroy)
-    resources :borrows, except: %i(index)
+    resources :follows, only: %i(create destroy)
+    resources :borrows, except: %i(index destroy)
   end
 
   namespace :admin do
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
     resources :books do
       resources :comments, only: %i(create update destroy)
       resources :likes, only: %i(create destroy)
+      resources :follows, only: %i(create destroy)
       resources :borrows
     end
   end

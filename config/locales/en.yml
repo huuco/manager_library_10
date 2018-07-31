@@ -1,5 +1,4 @@
 en:
-  home: "Home"
   not_found: "Not found user with id: "
   invalid_email_pass: "Invalid email/password combination"
   assigned: "Assigned new permission!"
@@ -21,7 +20,7 @@ en:
         submit: "Submit"
       index:
         list_have: "List have:"
-        books: "books"
+        books: "Books"
         manage_book: "Manage books"
         book_or_author: "Book title or Author"
       new:
@@ -99,6 +98,16 @@ en:
     show:
       read_more: "Read more >>"
       show_less: "<< Show less"
+  likes:
+    like:
+      like: "Like"
+    unlike:
+      unlike: "Unlike"
+  follows:
+    follow:
+      follow: "Follow"
+    unfollow:
+      unfollow: "Unfollow"
   comments:
     comment:
       cmt: "Comment"
@@ -119,3 +128,10 @@ en:
       log_in: "Log in"
       new_user: "New user? "
       sign_up_now: "Sign up now!"
+  static_pages: 
+    home:
+      home: "Home"
+      news: "News"
+      o_books: "Outstanding Books"
+      n_books: "New Books"
+      mb_books: "Most Borrow"
