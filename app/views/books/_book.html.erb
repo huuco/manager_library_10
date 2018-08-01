@@ -1,4 +1,4 @@
-<div class="card img-thumbnail">
+<div class="card my-2 img-thumbnail">
   <% if book.picture? %>
     <%= link_to image_tag(book.picture.url, alt: "Card image cap",
       class: "card-img-top"), book_path(book) %>
@@ -7,9 +7,29 @@
     alt: "Card image cap", class: "card-img-top"), book_path(book) %>
   <% end %>
   <div class="p-1 card-body">
-    <div class="book-title"><%= link_to book.title, book_path(book), class: "text-dark" %></div>
-    <div class="book-author">
-      <%= link_to book.author.name, "author_path(book.author)", class: "text-dark" %>
+    <p class="book-title my-0">
+      <%= link_to book.title, book_path(book), class: "text-dark" %> - 
+      <%= link_to book.author.name, author_path(book.author), class: "text-dark" %>
+    </p>
+    <div class="book-nav row col-md-12 ml-1">
+      <p id="btn-follow-<%= book.id %>" class="col-md-4 my-1 px-0"> 
+        <% if logged_in? && followed?(book.id) %>
+          <%= render partial: "follows/unfollow", locals: {book: book} %>
+        <% else %>
+          <%= render partial: "follows/follow", locals: {book: book} %>
+        <% end %>
+      </p>
+      <p id="btn-like-<%= book.id %>" class="col-md-4 my-1 px-0">
+        <% if logged_in? && liked?(book.id) %>
+          <%= render partial: "likes/unlike", locals: {book: book} %>
+        <% else %>
+          <%= render partial: "likes/like", locals: {book: book} %>
+        <% end %>
+      </p>
+      <p class="col-md-4 my-1 px-0"> 
+        <%= book.borrows.count %>
+        <%= link_to content_tag(:i, "", class: "fa fa-hand-paper-o"), "" %>
+      </p>
     </div>
   </div>
 </div>

@@ -1,89 +1,32 @@
-<% provide(:title, t("home")) %>
-<div class="col-md-3">
-    <ul class="list-group ml-2">
-      <li class="list-group-item text-center bg-primary">
-        Categories
-      </li>
-      <%# @categories.each do |ctg| %>
-        <%#= link_to admin_category_path(ctg), remote: true do %>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <%#= ctg.title %>
-            <span class="badge badge-primary badge-pill">10<%#= ctg.books.count %></span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center list-ctg">Longs
-            <span class="badge badge-primary badge-pill">10</span>
-          </li>
-        <%# end %>
-      <%# end %>
-      <li class="list-group-item text-center bg-primary">
-        <%= link_to "New category", "new_admin_category_path", class: "text-body" %>
-      </li>
-    </ul>
+<% provide(:title, t(".home")) %>
+<div class="col-md-12">
+  <%= image_tag "ban-sach-02.jpg", class: "post" %>
 </div>
-<div class="col-md-9 row justify-content-md-center">
-  <div class="col-md-6 row">
-  <div class="ml-2" >
-    <div class="container">
-      <div class="row my-1 bg-white">
-        <div class="col-md-6">
-          <h5 class="text-primary">Article subtitle</h5>
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div class="col-md-6 align-self-center">
-          <img class="img-fluid d-block w-100 img-thumbnail" src="https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/10492.jpg?v=2&w=340&h=497"> </div>
-      </div>
-      <div class="row bg-white">
-        <div class="col-md-6">
-          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/1159.jpg?v=1&w=340&h=497"> </div>
-        <div class="col-md-6">
-          <h5 class="text-primary pt-3">Article</h5>
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-      </div>
+<div class="col-md-3 my-2 bg-white">
+  <h3 class="col-md-12"><%= t ".news" %></h3>
+  <%= image_tag "bk2.jpg", class: "bg-white" %>
+</div>
+<div class="col-md-9 my-2 px-1 row justify-content-md-center">
+  <h3 class="col-md-12 ml-5"><%= t ".o_books" %></h3>
+  <% @ost_books.each do |book| %>
+    <div class="col-md-6 row">
+      <%= render partial: "book_card", locals: {book: book} %>
     </div>
-  </div>
-  </div>
-  <div class="col-md-6 row">
-  <div class="ml-2" >
-    <div class="container">
-      <div class="row my-1 bg-white">
-        <div class="col-md-6">
-          <h5 class="text-primary">Article subtitle #1</h5>
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div class="col-md-6 align-self-center">
-          <img class="img-fluid d-block w-100 img-thumbnail" src="https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/10492.jpg?v=2&w=340&h=497"> </div>
-      </div>
-      <div class="row bg-white">
-        <div class="col-md-6">
-          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/1159.jpg?v=1&w=340&h=497"> </div>
-        <div class="col-md-6">
-          <h5 class="text-primary pt-3">Article subtitle #2</h5>
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-      </div>
+  <% end %>
+</div>
+<div class="row col-md-12">
+  <h3 class="col-md-12"><%= t ".n_books" %></h3>
+  <% @new_books.each do |book| %>
+    <div class="col-md-2">
+      <%= render book %>
     </div>
-  </div>
-  </div>
+  <% end %>
+</div>
+<div class="row col-md-12">
+  <h3 class="col-md-12"><%= t ".mb_books" %></h3>
+  <% @br_books.each do |book| %>
+    <div class="col-md-2">
+      <%= render book %>
+    </div>
+  <% end %>
 </div>

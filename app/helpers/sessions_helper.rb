@@ -21,6 +21,10 @@ module SessionsHelper
   end
 
   def liked? book_id
-    !current_user.likes.find_by(book_id: book_id).nil?
+    current_user.likes.find_by(book_id: book_id).present?
+  end
+
+  def followed? book_id
+    current_user.follows.find_by(book_id: book_id).present?
   end
 end

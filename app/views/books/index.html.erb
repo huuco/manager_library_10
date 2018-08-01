@@ -1,0 +1,44 @@
+<% provide(:title, t("admin.books.index.books")) %>
+<div class="row col-md-12">
+  <div class="my-3">
+    <h5 id="result">
+      <%= "#{t("admin.books.index.list_have")} #{@books.total_count} #{t("admin.books.index.books")}" %>
+    </h5>
+  </div>
+  <div class="col-md-12 my-3 filter">
+    <%= form_tag url_for, method: :get do %>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="col-md-5">
+            <%= label_tag :search, t(".book_or_author") %>
+            <%= text_field_tag :search, params[:search], class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= label_tag :ctg_title, t("admin.books.form.category") %>
+            <%= select_tag :ctg_title,
+                options_from_collection_for_select(Category.all, :title, :title, params[:ctg_title]),
+                prompt: "Select category", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= label_tag :pub_name, t("admin.books.form.publisher") %>
+            <%= select_tag :pub_name,
+                options_from_collection_for_select(Publisher.all, :name, :name, params[:pub_name]),
+                prompt: "Select publisher", class: "form-control" %>
+          </div>
+          <%= submit_tag "Search", name: nil, class: "btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div id="search-result" class="row col-md-12">
+  <% @books.each do |book| %>
+    <div class="col-md-2">
+      <%= render book %>
+    </div>
+  <% end %>
+</div>
+<div id="pagination">
+    <%= paginate @books, window: 2, theme: "twitter-bootstrap-4",
+      pagination_class: "justify-content-center" %>
+  </div>

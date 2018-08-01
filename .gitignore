@@ -27,6 +27,8 @@
 /config/database.yml
 /config/credentials.yml.enc
 
+public/uploads/book/*
+app/assets/images/*
 
 config/settings.local.yml
 config/settings/*.local.yml

@@ -7,18 +7,21 @@
       class: "img-fluid d-block") %>
     <% end %>
     <div class="row my-2">
-      <p class="col-md-4"> 
-        <%= @book.follows.count %>
-        <%= link_to t(".folow"), "", class: "col-md-4" %>
+      <p id="btn-follow-<%= @book.id %>" class="col-md-4"> 
+        <% if logged_in? && followed?(@book.id) %>
+          <%= render partial: "follows/unfollow", locals: {book: @book} %>
+        <% else %>
+          <%= render partial: "follows/follow", locals: {book: @book} %>
+        <% end %>
       </p>
-      <p class="col-md-4">IMDb 
+      <p class="col-md-4 pr-0">IMDb 
         <%= @book.rates.any? ? @book.rates.average(:point).round(1) : 0 %>
       </p>
-      <p id="btn-like" class="col-md-4">
+      <p id="btn-like-<%= @book.id %>" class="col-md-4">
         <% if logged_in? && liked?(@book.id) %>
-          <%= render "likes/unlike"%>
+          <%= render partial: "likes/unlike", locals: {book: @book} %>
         <% else %>
-          <%= render "likes/like"%>
+          <%= render partial: "likes/like", locals: {book: @book} %>
         <% end %>
       </p>
     </div>

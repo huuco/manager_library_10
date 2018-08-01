@@ -1,0 +1,3 @@
+<%= book.follows.count %>
+<%= link_to fa_icon("eye"), book_follow_path(book, current_user.follows.find_by(book_id: book.id)),
+  method: :delete, remote: true, rel: "tooltip", title: t(".unfollow") %>

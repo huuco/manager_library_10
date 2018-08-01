@@ -1,0 +1,2 @@
+$("#btn-follow-<%= @book.id %>").html("<%= escape_javascript(
+  render(partial: "follows/follow", locals: {book: @book})) %>");
