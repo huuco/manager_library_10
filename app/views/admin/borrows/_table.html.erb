@@ -1,0 +1,5 @@
+<% @borrows.each do |borrow| %>
+  <tr id="borrow-<%= borrow.id %>" class="text-center">
+    <%= render borrow %>
+  </tr>
+<% end %>

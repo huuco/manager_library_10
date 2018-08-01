@@ -1,4 +1,4 @@
-class Admin::BooksController < ApplicationController
+class Admin::BooksController < AdminController
   before_action :get_book, except: %i(index new create)
 
   def index

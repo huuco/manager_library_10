@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "log_in", to: "sessions#create"
   delete "log_out", to: "sessions#destroy"
   
+  resources :users, only: [:show]
+  # resources :borrows, except: %i(index destroy)
   resources :categories, :authors, :publishers, only: %i(index show)
   resources :books, only: [:show, :index] do
     resources :comments, only: %i(create update destroy)
@@ -16,8 +18,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root "users#index"
-    resources :users, :authors, :categories, :publishers
+    root "borrows#index"
+    resources :users, :authors, :categories, :publishers, :borrows
     resources :books do
       resources :comments, only: %i(create update destroy)
       resources :likes, only: %i(create destroy)

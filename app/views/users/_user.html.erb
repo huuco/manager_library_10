@@ -1,0 +1,38 @@
+<div class="row my-3">
+  <div class="col-md-3 border border-primary rounded row">
+    <div class="col-md-12">
+      <img class="img-fluid d-block" src="https://i.pinimg.com/originals/7f/4c/cb/7f4ccb7bb1d21c848bb58b2911a6db09.jpg">
+      <h4 class="my-1"><%= @user.name %></h4>
+      <h6 class="my-1"><%= @user.email %></h6>
+      <div class="my-2 row">
+        <%= link_to "Folowing", "#", class: "col-md-4" %>
+        <p class="col-md-4"></p>
+        <p class="col-md-4"></p>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-9 ml-2">
+    <% unless @borrows.nil? %>
+      <div class="col-md-12 mt-3">
+        <table class="table table-bordered table-hover bg-lightblue">
+          <thead>
+            <tr class="text-center">
+              <th><%= t(".book_title") %></th>
+              <th><%= t(".date_borrow") %></th>
+              <th><%= t(".borrow_days") %></th>
+              <th><%= t(".status") %></th>
+              <th><%= t(".date_return") %></th>
+            </tr>
+          </thead>
+          <tbody id="borrow-table" class="bg-white">
+            <%= render "borrows/table" %>
+          </tbody>
+        </table>
+        <div id="pagination">
+        <%= paginate @borrows, remote: true, window: 2, theme: "twitter-bootstrap-4",
+          pagination_class: "justify-content-center" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -31,7 +31,14 @@
       </p>
       <p class="col-md-4 pr-0"> 
         <%= book.borrows.count %>
-        <%= link_to fa_icon("hand-paper-o"), "" %>
+        <% if book.status %>
+          <%= link_to content_tag(:i, "", class: "fa fa-hand-paper-o"),
+            new_book_borrow_path(book), remote: true,
+            data: {toggle: "modal", target: "#myModal"}, rel: "tooltip", title: t("books.book.borrow") %>
+        <% else %>
+          <%= content_tag :i, "", class: "fa fa-hand-paper-o", rel: "tooltip",
+            title: t("books.book.borrowed") %>
+        <% end %>
       </p>
     </div>
   </div>

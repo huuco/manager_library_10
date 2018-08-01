@@ -1,0 +1,4 @@
+$("#borrow-table").html("<%= escape_javascript render "table" %>")
+$("#pagination").html("<%= escape_javascript(paginate @borrows, remote: true,
+  window: 2, theme: "twitter-bootstrap-4",
+  pagination_class: "justify-content-center") %>")
