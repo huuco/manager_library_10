@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_095405) do
+ActiveRecord::Schema.define(version: 2018_08_01_095405) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2018_07_25_095405) do
     t.date "date_borrow"
     t.integer "borrow_days"
     t.date "date_return"
-    t.integer "status"
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["book_id"], name: "index_borrows_on_book_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end

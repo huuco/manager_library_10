@@ -37,6 +37,15 @@ en:
         delete_success: "Book is deleted"
         delete_fail: "Can't delete this book"
         not_delete: "This book is borrowing, can't delete it"
+    borrows:
+      index:
+        manage_borrow: "Manage Borrows"
+        user_name: "User name"
+        book_title: "Book title"
+        date_borrow: "Date borrow"
+        borrow_days: "Borrow days"
+        status: "Status"
+        date_return: "Date return"
     categories:
       index:
         create_category: "Create new category!"
@@ -95,6 +104,9 @@ en:
         borrowing: "Borrowing"
         return_late: "Return late"
   books:
+    book:
+      borrow: "Borrow"
+      borrowed: "Book is borrowed"
     show:
       read_more: "Read more >>"
       show_less: "<< Show less"

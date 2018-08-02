@@ -24,6 +24,19 @@
           <%= render partial: "likes/like", locals: {book: @book} %>
         <% end %>
       </p>
+      <div class="col-md-12 ">
+        <% if @book.status %>
+          <% if logged_in? && waitting_borrow?(@book.id) %>
+            <%= t ".waitting" %>
+          <% else %>
+            <%= link_to content_tag(:i, t(".borrow_book"), class: "fa fa-hand-paper-o"),
+              new_book_borrow_path(@book), remote: true,
+              data: {toggle: "modal", target: "#myModal"}, class: "btn" %>
+          <% end %>
+        <% else %>
+          <%= t ".is_borrowed" %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row col-md-8 order-1 order-md-2 my-4">

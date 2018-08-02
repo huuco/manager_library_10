@@ -1,0 +1,70 @@
+<% provide(:title, t(".manage_borrow")) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
+    <li class="breadcrumb-item"><%= link_to t("_users"), admin_users_path %></li></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+<div class="row col-md-12">
+  <%= link_to content_tag(:i, t(".filter"), class: "fa fa-filter"), "",
+    class: "btn filter-show" %>
+  <%= link_to content_tag(:i, t(".create_request"), class: "fa fa-hand-paper-o"),
+    "", remote: true, data: {toggle: "modal", target: "#myModal"},
+    class: "btn" %>
+  <div class="col-md-12 filter hidden">
+    <%= form_tag url_for, remote: true, method: :get do %>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="col-md-2">
+            <%= label_tag :user_name, t(".user") %>
+            <%= text_field_tag :user_name, params[:user_name], class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= label_tag :book_title, t(".book_title") %>
+            <%= text_field_tag :book_title, params[:book_title], class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= label_tag :status, t(".status") %>
+            <%= select_tag :status,
+                options_for_select([:waitting, :active, :refuse, :cancelled, :returned]),
+                prompt: "Status", class: "form-control" %>
+          </div>
+          <div class="col-md-2 px-1">
+            <%= label_tag :from_date, t(".from_date") %>
+            <%= date_field_tag :from_date, nil, class: "form-control" %>
+          </div>
+          <div class="col-md-2 px-1">
+            <%= label_tag :to_date, t(".to_date") %>
+            <%= date_field_tag :to_date, nil, class: "form-control" %>
+          </div>
+          <div class="">
+            <br>
+            <%= submit_tag "Search", name: nil, class: "btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-12 mt-3">
+  <table class="table table-bordered table-hover bg-lightblue">
+    <thead>
+      <tr class="text-center">
+        <th><%= t(".user_name") %></th>
+        <th><%= t(".book_title") %></th>
+        <th><%= t(".date_borrow") %></th>
+        <th><%= t(".borrow_days") %></th>
+        <th><%= t(".status") %></th>
+        <th><%= t(".date_return") %></th>
+      </tr>
+    </thead>
+    <tbody id="borrow-table" class="bg-white">
+      <%= render "table" %>
+    </tbody>
+  </table>
+  <div id="pagination">
+  <%= paginate @borrows, remote: true, window: 2, theme: "twitter-bootstrap-4",
+    pagination_class: "justify-content-center" %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-4">
+    <% if @book.picture? %>
+      <%= image_tag @book.picture.url, alt: "Card image cap", class: "card-img-top" %>
+    <% else %>
+      <%= image_tag "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/4600.jpg?v=2&w=340&h=497",
+    alt: "Card image cap", class: "card-img-top" %>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <%= form_for @borrow, url: book_borrows_path do |f| %>
+      <div class="form-group">
+        <h5 class="input-group"><%= @book.title %> - <%= @book.author.name %></h5>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <%= f.label :date_borrow, class: "col-md-5" %>
+          <%= f.date_field :date_borrow, min: Date.today + 1, id: "date-borrow",
+            class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <%= f.label :borrow_days, class: "col-md-5" %>
+          <%= f.number_field :borrow_days, id: "num-days", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <%= f.label :date_return, class: "col-md-5" %>
+          <div id="date_return"></div>
+        </div>
+      </div>
+      <br>
+      <%= f.submit "Submit", class: "btn" %>
+    <% end %>
+  </div>
+</div>
