@@ -1,0 +1,29 @@
+<%= form_for [:admin, @publisher] do |f| %>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :name, t(".name"), class: "col-md-4" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :address, t(".address"), class: "col-md-4" %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :phone, t(".phone"), class: "col-md-4" %>
+      <%= f.text_field :phone, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.label :info, t(".info"), class: "col-md-4" %>
+      <%= f.text_field :info, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit t(".create"), class: "btn btn-primary" %>
+  </div>
+<% end %>

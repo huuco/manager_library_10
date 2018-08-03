@@ -4,14 +4,14 @@
       <%= link_to image_tag(book.picture.url, alt: "Card image cap",
         class: "img-fluid d-block w-100 img-thumbnail"), book_path(book) %>
     <% else %>
-      <%= link_to image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/4600.jpg",
+      <%= link_to image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/18782.jpg",
       alt: "Card image cap", class: "img-fluid d-block w-100 img-thumbnail"), book_path(book) %>
     <% end %>
   </div>
   <div class="col-md-6 pl-0">
     <h6 class="b-t-card pt-3 text-primary">
       <%= link_to book.title, book_path(book) %> - 
-      <%= link_to book.author.name, "" %>
+      <%= link_to book.author_name, author_path(book.author_id) %>
     </h6>
     <p class="b-d-card mb-2"><%= book.describe %></p>
     <div class="row">
@@ -30,7 +30,7 @@
         <% end %>
       </p>
       <p class="col-md-4 pr-0"> 
-        <%= book.borrows.count %>
+        <%= book.borrows.length %>
         <% if book.status %>
           <%= link_to content_tag(:i, "", class: "fa fa-hand-paper-o"),
             new_book_borrow_path(book), remote: true,

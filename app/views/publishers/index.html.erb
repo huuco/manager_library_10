@@ -1,0 +1,8 @@
+<div class="row col-md-12">
+  <% @publishers.each do |pub| %>
+    <div class="col-md-4">
+      <%= link_to pub.name, publisher_path(pub), class: "text-dark" %> - 
+      <%= pub.books.length %>
+    </div>
+  <% end %>
+</div>

@@ -14,7 +14,12 @@
     <div class="bg-light">
       <div class="container">
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <div class="alert alert-<%= message_type %>">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= message %>
+          </div>
         <% end %>
         <div class="row py-3 justify-content-md-center">
           <div class="modal col-md-12 row" id="myModal"></div>

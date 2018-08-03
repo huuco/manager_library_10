@@ -9,6 +9,26 @@ en:
   contact_us: "Contact us"
   delete_confirm: "Are you sure?"
   admin:
+    authors:
+      form:
+        name: "Author name"
+        birth_year: "Birth year"
+        country: "Country"
+        create: "Create"
+      table:
+      index:
+        stt: "idx"
+        manage_authors: "Manage Authors"
+      new:
+        create_author: "Create new author"
+      create:
+        add_success: "New author is created:"
+        add_fail: "Add new author is failed"
+      edit:
+        edit_author: "Edit author"
+      update:
+        update_success: "Author is updated"
+      destroy:
     books:
       form:
         book_title: "Book title"
@@ -73,6 +93,24 @@ en:
         delete_success: "Category is deleted"
         delete_fail: "Can't delete this category"
         ctg_has_books: "This category has books, can't delete it"
+    publishers:
+      form:
+        name: "Publisher name"
+        address: "Address"
+        phone: "Phone"
+        info: "Info"
+        create: "Create"
+      table:
+      index:
+        manage_publishers: "Manage Publishers"
+        stt: "idx"
+      new:
+        create_pub: "Create publisher"
+      create:
+      edit:
+        edit_pub: "Edit publisher"
+      update:
+      destroy:
     users:
       index:
         manage_user: "Manage users"

@@ -15,14 +15,14 @@
           </div>
           <div class="col-md-3">
             <%= label_tag :ctg_title, t("admin.books.form.category") %>
-            <%= select_tag :ctg_title,
-                options_from_collection_for_select(Category.all, :title, :title, params[:ctg_title]),
+            <%= select_tag :ctg_id,
+                options_from_collection_for_select(Category.all, :id, :title, params[:ctg_id]),
                 prompt: "Select category", class: "form-control" %>
           </div>
           <div class="col-md-3">
             <%= label_tag :pub_name, t("admin.books.form.publisher") %>
-            <%= select_tag :pub_name,
-                options_from_collection_for_select(Publisher.all, :name, :name, params[:pub_name]),
+            <%= select_tag :pub_id,
+                options_from_collection_for_select(Publisher.all, :id, :name, params[:pub_id]),
                 prompt: "Select publisher", class: "form-control" %>
           </div>
           <%= submit_tag "Search", name: nil, class: "btn-primary" %>

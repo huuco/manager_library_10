@@ -1,0 +1,8 @@
+<div class="row col-md-12">
+  <% @authors.each do |aut| %>
+    <div class="col-md-4">
+      <%= link_to aut.name, author_path(aut), class: "text-dark" %> - 
+      <%= aut.books.length %>
+    </div>
+  <% end %>
+</div>

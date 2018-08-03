@@ -1,0 +1,16 @@
+<% provide(:title, @author.name) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <%= @author.name %>
+    </li>
+</nav>
+<h3><%= @author.name %></h3>
+<div class="row col-md-12">
+  <% @books.each do |book| %>
+    <div class="col-md-2">
+      <%= render book %>
+    </div>
+  <% end %>
+</div>

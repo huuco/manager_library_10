@@ -13,27 +13,42 @@ class Book < ApplicationRecord
   mount_uploader :picture, PictureUploader
   validates :title, :status, presence: true
 
+  scope :select_books, (lambda do
+    includes(:likes, :borrows, :follows)
+    .select(:id, :title, :describe, :published_at, :status, :picture, :author_id,
+    :category_id, :publisher_id, "authors.name AS author_name")
+    .joins(:author)
+  end)
   scope :created_at_desc, -> {order created_at: :desc}
-  scope :search, (lambda do |params|
-    select(:id, :title, :describe, :published_at, :status, :picture, :author_id,
-      "`authors`.`name` AS author_name")
-    .joins(:category, :author, :publisher)
-    .where '(books.title LIKE ? OR authors.name LIKE ?) AND categories.title LIKE ? AND publishers.name LIKE ?',
-      "%#{params[:search]}%", "%#{params[:search]}%",
-      "%#{params[:ctg_title]}%", "%#{params[:pub_name]}%"
+
+  scope :search, (lambda do |search|
+    select_books
+    .where "books.title LIKE ? OR authors.name LIKE ?", "%#{search}%", "%#{search}%"
   end)
+  scope :get_by_category, -> ctg_id {where category_id: ctg_id}
+  scope :get_by_publisher, -> pub_id {where publisher_id: pub_id}
+
   scope :suggest_books, (lambda do |book|
-    where("category_id = ? AND id != ?", book.category_id, book.id).sample(3)
+    select_books.where("category_id = ? AND books.id != ?", book.category_id, book.id).sample(3)
   end)
-  scope :new_books, -> {order(created_at: :desc).limit 6}
+
+  scope :new_books, -> {select_books.created_at_desc.limit 6}
+  
   scope :outstanding_books, (lambda do
-    joins(:likes)
+    includes(:borrows, :follows)
+    .select(:id, :title, :describe, :published_at, :status, :picture, :author_id,
+    :category_id, :publisher_id, "authors.name AS author_name")
+    .joins(:likes, :author)
     .where("DATE(likes.created_at) BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE()")
-    .group("books.id").order("count(*) desc").limit 4
+    .group("books.id").order("COUNT(books.id) desc").limit 4
   end)
+
   scope :most_borrow_books, (lambda do
-    joins(:borrows)
+    includes(:likes, :follows)
+    .select(:id, :title, :describe, :published_at, :status, :picture, :author_id,
+    :category_id, :publisher_id, "authors.name AS author_name")
+    .joins(:borrows, :author)
     .where("DATE(borrows.created_at) BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE()")
-    .group("books.id").order("count(*) desc").limit 6
+    .group("books.id").order("COUNT(books.id) desc").limit 6
   end)
 end

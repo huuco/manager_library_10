@@ -1,0 +1,13 @@
+<li>
+  <% if category.children.any? %>
+    <%=link_to category.title, category_path(category),
+      class: "dropdown-item dropdown-toggle", data: {toggle: "dropdown"},
+      role: "link", aria: {haspopup: "true", expanded: "false"} %>
+    <ul class="dropdown-menu">
+      <%= render category.children.includes(:children) %>
+    </ul>
+  <% else %>
+    <%=link_to category.title, category_path(category),
+      class: "dropdown-item" %>
+  <% end %>
+</li>

@@ -3,13 +3,13 @@
     <%= link_to image_tag(book.picture.url, alt: "Card image cap",
       class: "card-img-top"), book_path(book) %>
   <% else %>
-    <%= link_to image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/4600.jpg",
+    <%= link_to image_tag("https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/18770.jpg",
     alt: "Card image cap", class: "card-img-top"), book_path(book) %>
   <% end %>
   <div class="p-1 card-body">
     <p class="book-title my-0">
       <%= link_to book.title, book_path(book), class: "text-dark" %> - 
-      <%= link_to book.author.name, author_path(book.author), class: "text-dark" %>
+      <%= link_to book.author_name, author_path(book.author_id), class: "text-dark" %>
     </p>
     <div class="book-nav row col-md-12 ml-1">
       <p id="btn-follow-<%= book.id %>" class="col-md-4 my-1 px-0"> 
@@ -20,14 +20,14 @@
         <% end %>
       </p>
       <p id="btn-like-<%= book.id %>" class="col-md-4 my-1 px-0">
-        <% if logged_in? && liked?(book.id) %>
+        <% if logged_in? && liked?(book) %>
           <%= render partial: "likes/unlike", locals: {book: book} %>
         <% else %>
           <%= render partial: "likes/like", locals: {book: book} %>
         <% end %>
       </p>
       <p class="col-md-4 my-1 px-0"> 
-        <%= book.borrows.count %>
+        <%= book.borrows.length %>
         <% if book.status %>
           <%= link_to content_tag(:i, "", class: "fa fa-hand-paper-o"),
             new_book_borrow_path(book), remote: true,
