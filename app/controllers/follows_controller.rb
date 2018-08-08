@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_action :get_book, :logged_in?
+  before_action :get_book, :user_signed_in?
 
   def create
     @follow = current_user.follows.build

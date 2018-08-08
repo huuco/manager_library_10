@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :get_book, :logged_in?
+  before_action :get_book, :user_signed_in?
 
   def create
     @like = current_user.likes.build

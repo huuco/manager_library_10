@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :get_book, :logged_in?
+  before_action :get_book, :user_signed_in?
   
   def create
     @comment = @book.comments.build comment_params

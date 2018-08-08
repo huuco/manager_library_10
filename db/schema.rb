@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 2018_08_03_098888) do
     t.string "title"
     t.text "describe"
     t.date "published_at"
+    t.boolean "status", default: true
+    t.string "picture"
     t.bigint "category_id"
     t.bigint "author_id"
     t.bigint "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picture"
-    t.boolean "status", default: true
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["category_id"], name: "index_books_on_category_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2018_08_03_098888) do
     t.date "date_borrow"
     t.integer "borrow_days"
     t.date "date_return"
+    t.integer "status", default: 0
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
     t.index ["book_id"], name: "index_borrows_on_book_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end
@@ -130,11 +130,22 @@ ActiveRecord::Schema.define(version: 2018_08_03_098888) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.integer "role", default: 0
-    t.string "password_digest"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "book_tags", "books"

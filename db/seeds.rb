@@ -1,7 +1,7 @@
-User.create! name: "Admin", email: "admin@gmail.com", role: 2,
+User.create! name: "Admin", email: "admin@gmail.com",
   password: "123123", password_confirmation: "123123"
 
-User.create! name: "Manager", email: "tuannguyen@gmail.com", role: 1,
+User.create! name: "Manager", email: "tuannguyen@gmail.com",
   password: "123123", password_confirmation: "123123"
 
 50.times do
@@ -25,9 +25,9 @@ end
 end
 
 100.times do 
-  aut_id = rand(1..40)
-  pub_id = rand(1..40)
-  genre_id = rand(1..22)
+  aut_id = rand(1..20)
+  pub_id = rand(1..20)
+  genre_id = rand(1..20)
   Book.create! title: Faker::Book.title, describe: Faker::Lorem.sentence(300),
     published_at: Faker::Date.backward(36500), author_id: aut_id,
     publisher_id: pub_id, category_id: genre_id
