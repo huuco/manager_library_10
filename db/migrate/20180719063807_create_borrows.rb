@@ -4,7 +4,7 @@ class CreateBorrows < ActiveRecord::Migration[5.2]
       t.date :date_borrow
       t.integer :borrow_days
       t.date :date_return
-      t.integer :status
+      t.integer :status, default: 0
       t.references :user, foreign_key: true
       t.references :book, foreign_key: true
 

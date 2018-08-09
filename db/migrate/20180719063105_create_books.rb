@@ -4,7 +4,8 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :describe
       t.date :published_at
-      t.boolean :status
+      t.boolean :status, default: true
+      t.string :picture
       t.references :category, foreign_key: true
       t.references :author, foreign_key: true
       t.references :publisher, foreign_key: true

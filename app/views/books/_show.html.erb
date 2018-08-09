@@ -8,7 +8,7 @@
     <% end %>
     <div class="row my-2">
       <p id="btn-follow-<%= @book.id %>" class="col-md-4"> 
-        <% if logged_in? && followed?(@book.id) %>
+        <% if user_signed_in? && followed?(@book.id) %>
           <%= render partial: "follows/unfollow", locals: {book: @book} %>
         <% else %>
           <%= render partial: "follows/follow", locals: {book: @book} %>
@@ -18,7 +18,7 @@
         <%= @book.rates.any? ? @book.rates.average(:point).round(1) : 0 %>
       </p>
       <p id="btn-like-<%= @book.id %>" class="col-md-4">
-        <% if logged_in? && liked?(@book) %>
+        <% if user_signed_in? && liked?(@book.id) %>
           <%= render partial: "likes/unlike", locals: {book: @book} %>
         <% else %>
           <%= render partial: "likes/like", locals: {book: @book} %>
@@ -26,7 +26,7 @@
       </p>
       <div class="col-md-12 ">
         <% if @book.status %>
-          <% if logged_in? && waitting_borrow?(@book.id) %>
+          <% if user_signed_in? && waitting_borrow?(@book.id) %>
             <%= t ".waitting" %>
           <% else %>
             <%= link_to content_tag(:i, t(".borrow_book"), class: "fa fa-hand-paper-o"),
@@ -44,7 +44,7 @@
       <%= @book.title %> - 
       <%= link_to @book.author.name, admin_author_path(@book.author), class: "text-dark" %>
     </h5>
-    <% if logged_in? && current_user.manager? %>
+    <% if user_signed_in? && current_user.manager? %>
       <%= link_to content_tag(:i, t(".edit"), class: "fa fa-edit"), edit_admin_book_path,
         remote: true, class: "col-md-1 btn" %>
       <%= link_to content_tag(:i, t(".delete"), class: "fa fa-trash-o"), admin_book_path,
