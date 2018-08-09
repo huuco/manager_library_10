@@ -1,0 +1,6 @@
+$("#result").html("<%= escape_javascript("List have #{@publishers.total_count} publishers")%>")
+$("#data-table").html("<%= escape_javascript(render partial: "table",
+  locals: {publishers: @publishers}) %>")
+$("#pagination").html("<%= escape_javascript(paginate @publishers, remote: true,
+  window: 2, theme: "twitter-bootstrap-4",
+  pagination_class: "justify-content-center") %>")

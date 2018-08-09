@@ -2,8 +2,11 @@ class Admin::BooksController < AdminController
   before_action :get_book, except: %i(index new create)
 
   def index
-    @books = Book.search(params).created_at_desc
-                 .page(params[:page]).per Settings.pages.per_book
+    @books = Book.search(params[:search]).created_at_desc
+    @books = @books.get_by_category params[:ctg_id] if params[:ctg_id].present?
+    @books = @books.get_by_publisher params[:pub_id] if params[:pub_id].present?
+    
+    @books = @books.page(params[:page]).per Settings.pages.per_book
     respond_to do |format|
       format.html
       format.js

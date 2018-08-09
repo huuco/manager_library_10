@@ -1,17 +1,19 @@
-<% if categories.any? %>
+<% if publishers.any? %>
   <% serial_number params[:page].to_i, Settings.pages.per_ctg %>
-  <% categories.each.with_index do |ctg, i| %>
+  <% publishers.each.with_index do |pub, i| %>
     <tr>
       <td class="text-center"><%= @idx + i+1 %></td>
-      <td><%= link_to ctg.title, admin_category_path(ctg), class: "text-dark" %></td>
-      <td class="text-center"><%= ctg.books.length %></td>
-      <td><%= ctg.describe %></td>
+      <td><%= link_to pub.name, admin_publisher_path(pub), class: "text-dark" %></td>
+      <td class="text-center"><%= pub.books.length %></td>
+      <td><%= pub.address %></td>
+      <td class="text-center"><%= pub.phone %></td>
+      <td><%= pub.info %></td>
       <td>
         <%= link_to content_tag(:i, t(".edit"), class: "fa fa-edit"),
-          edit_admin_category_path(ctg) %>
-        <% unless ctg.books.any? %>
+          edit_admin_publisher_path(pub) %>
+        <% unless pub.books.any? %>
           <%= link_to content_tag(:i, t(".delete"), class: "fa fa-trash-o"),
-            admin_category_path(ctg), method: :delete,
+            admin_publisher_path(pub), method: :delete,
             data: {confirm: t("delete_confirm")}, class: "text-danger" %>
         <% end %>
       </td>
