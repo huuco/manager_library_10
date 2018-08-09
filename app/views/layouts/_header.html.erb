@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <% if user_signed_in? %>
+          <% if user_signed_in? && (can? :manage, :all) %>
             <li class="nav-item">
               <%= link_to t("admin.books.index.borrows"), admin_borrows_path, class: "nav-link" %>
             </li>
@@ -31,8 +31,8 @@
               <%= link_to t("categories"), "", id: "navbarDropdownMenuLink",
                 class: "nav-link dropdown-toggle", data: {toggle: "dropdown"} %>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= Category.get_parent.each do |category| %>
-                  <%= render partial: "categories/category", locals: {category: category} %>
+                <% Category.get_parent.each do |ctg| %>
+                  <%= render partial: "categories/category", locals: {category: ctg} %>
                 <% end %>
               </ul>
             </li>

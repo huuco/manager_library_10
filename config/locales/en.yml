@@ -67,6 +67,12 @@ en:
         status: "Status"
         date_return: "Date return"
     categories:
+      form:
+        create: "Create"
+      table:
+        no_result: "No result to show"
+        edit: "Edit"
+        delete: "Delete"
       index:
         create_category: "Create new category!"
         manage_category: "Manage categories"
@@ -77,16 +83,13 @@ en:
         title: "Title"
         books: "Books"
         describe: "Describe"
-      table:
-        no_result: "No result to show"
-        edit: "Edit"
-        delete: "Delete"
       new:
         create_ctg: "Create category"
+      create:
+        add_success: "Created category: "
+        add_fail: "Create category is failed"
       edit:
         edit_ctg: "Edit category"
-      form:
-          create: "Create"
       update:
         update_success: "This category is updated"
       destroy:
@@ -148,6 +151,11 @@ en:
     show:
       read_more: "Read more >>"
       show_less: "<< Show less"
+  borrows:
+    create:
+      borrow_success: "Your request: Borrow"
+      borrow_fail: "your request is failed"
+      is_borrowed: "is borrowed"
   likes:
     like:
       like: "Like"
@@ -163,21 +171,6 @@ en:
       cmt: "Comment"
       ago: "ago"
       delete-cmt: "Delete comment?"
-  users:
-    new:
-      sign_up: "Sign up"
-      name: "Name"
-      your_name: "John Kent"
-      password: "Password"
-      password_comfirm: "Password comfirm"
-      create: "Create account"
-    create:
-      welcome: "Welcom to Library, "
-  sessions:
-    new:
-      log_in: "Log in"
-      new_user: "New user? "
-      sign_up_now: "Sign up now!"
   static_pages: 
     home:
       home: "Home"

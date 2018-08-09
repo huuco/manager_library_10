@@ -10,14 +10,12 @@
       <%= link_to t(".follow"), "", class: "btn" %>
       <% if current_user.admin? %>
         <div id="role" class="dropdown">
-          <%= button_tag @user.is_role, class: "btn btn-primary dropdown-toggle",
+          <%= button_tag @user.role, class: "btn btn-primary dropdown-toggle",
             data: {toggle: "dropdown"} %>
           <div class="dropdown-menu">
-            <%= link_to t(".user"), admin_user_path(params.permit().merge(role: 0)),
+            <%= link_to t(".user"), admin_user_path(params.permit().merge(role: :user)),
               method: :put, remote:true, class: "dropdown-item" %>
-            <%= link_to t(".manager"), admin_user_path(params.permit().merge(role: 1)),
-              method: :put, remote:true, class: "dropdown-item" %>
-            <%= link_to t(".admin"), admin_user_path(params.permit().merge(role: 2)),
+            <%= link_to t(".manager"), admin_user_path(params.permit().merge(role: :manager)),
               method: :put, remote:true, class: "dropdown-item" %>
           </div>
         </div>

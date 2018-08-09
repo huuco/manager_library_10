@@ -7,7 +7,7 @@
   </ol>
 </nav>
 <div class="col-md-10">
-  <%= form_tag url_for, method: :get, remote: true, id: "search-users" do %>
+  <%= form_tag admin_users_path, method: :get, remote: true, id: "search-users" do %>
     <div class="form-group">
       <div class="input-group">
         <h5><%= label_tag :search, t(".list_user"), class: "mx-2" %></h5>

@@ -11,9 +11,9 @@ class BorrowsController < ApplicationController
       @borrow = @book.borrows.build borrow_params
       @borrow.user = current_user
       if @borrow.save
-        flash[:success] = "#{t(".borrow")} #{@book.title}"
+        flash[:success] = "#{t(".borrow_success")} #{@book.title}"
       else
-        flash[:error] = "#{t(".borrow_fail")} #{@book.title}"
+        flash[:error] = t(".borrow_fail")
       end
     else
       flash[:danger] = "#{@book.title} #{t(".is_borrowed")}"

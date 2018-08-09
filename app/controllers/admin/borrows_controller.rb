@@ -1,4 +1,5 @@
-class Admin::BorrowsController < ApplicationController
+class Admin::BorrowsController < AdminController
+  
   def index
     @borrows = Borrow.search_borrows params
     if params[:from_date].present? && params[:to_date].present?
