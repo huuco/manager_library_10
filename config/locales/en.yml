@@ -156,6 +156,14 @@ en:
       borrow_success: "Your request: Borrow"
       borrow_fail: "your request is failed"
       is_borrowed: "is borrowed"
+  borrow_mailer:
+    update_borrow_email:
+      subject_mail: "Your request borrow is update"
+      hi: "Hi"
+      your_request: "Your request borrow"
+      is: "is"
+      review_at: "Review at"
+      here: "Here"
   likes:
     like:
       like: "Like"

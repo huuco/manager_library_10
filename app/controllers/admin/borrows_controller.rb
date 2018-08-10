@@ -21,6 +21,7 @@ class Admin::BorrowsController < AdminController
         book.toggle! :status
         @borrow.update_attributes date_return: Date.today if params[:status] == "returned"
       end
+      BorrowMailer.update_borrow_email(@borrow.user, @borrow).deliver_later
     end
     respond_to do |format|
       format.html {redirect_to admin_borrows_path}
