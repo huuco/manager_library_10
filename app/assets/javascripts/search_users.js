@@ -8,22 +8,22 @@ $(document).ready(function() {
   });
   $("#_users").click(function(e) {
     e.preventDefault();
-    $("#_role").val(0);
-    search(0, $("#_search").val());
+    $("#_role").val("user");
+    search("user", $("#_search").val());
     $("#_users").addClass("btn-primary");
     return false;
   });
   $("#_managers").click(function(e) {
     e.preventDefault();
-    $("#_role").val(1);
-    search(1, $("#_search").val());
+    $("#_role").val("manager");
+    search("manager", $("#_search").val());
     $("#_managers").addClass("btn-primary");
     return false;
   });
   $("#_admins").click(function(e) {
     e.preventDefault();
-    $("#_role").val(2);
-    search(2, $("#_search").val());
+    $("#_role").val("admin");
+    search("admin", $("#_search").val());
     $("#_admins").addClass("btn-primary");
     return false;
   });
@@ -33,7 +33,7 @@ function search(role, search){
   $("form .btn").removeClass("btn-primary");
   $.ajax({
     type: "GET",
-    url: "/admin",
+    url: "/admin/users",
     data: {role: role, search: search},
     dataType: 'script',
   });

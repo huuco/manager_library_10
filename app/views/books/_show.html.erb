@@ -44,7 +44,7 @@
       <%= @book.title %> - 
       <%= link_to @book.author.name, admin_author_path(@book.author), class: "text-dark" %>
     </h5>
-    <% if user_signed_in? && current_user.manager? %>
+    <% if can? :manage, @book %>
       <%= link_to content_tag(:i, t(".edit"), class: "fa fa-edit"), edit_admin_book_path,
         remote: true, class: "col-md-1 btn" %>
       <%= link_to content_tag(:i, t(".delete"), class: "fa fa-trash-o"), admin_book_path,
