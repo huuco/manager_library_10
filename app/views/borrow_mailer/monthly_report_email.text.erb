@@ -1,0 +1,6 @@
+<%= "#{t(".hi_admin")} #{Date.today.strftime("%m/%Y")}" %>
+<%= t ".in_month_have" %>
+<%= "#{t(".request_borrows")} #{Borrow.count_borrows.count}" %>
+<%= "#{t(".accept_borrows")} #{Borrow.count_accepts.count}" %>
+<%= "#{t(".return_borrows")} #{Borrow.count_returns.count}" %>
+<%= t ".view_detail_at" %><%= link_to t(".here"), admin_borrows_url %>

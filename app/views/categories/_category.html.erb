@@ -4,7 +4,9 @@
       class: "dropdown-item dropdown-toggle", data: {toggle: "dropdown"},
       role: "link", aria: {haspopup: "true", expanded: "false"} %>
     <ul class="dropdown-menu">
-      <%= render category.children.includes(:children) %>
+      <% category.children.includes(:children).each do |category| %>
+        <%= render partial: "categories/category", locals: {category: category} %>
+      <% end %>
     </ul>
   <% else %>
     <%= link_to category.title, category_path(category),

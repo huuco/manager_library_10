@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= "#{t("borrow_mailer.update_borrow_email.hi")} #{@user.name}" %></h1>
+    <p><%= "#{t(".your_borrow")} #{@borrow.book.title} #{t(".from")} #{@borrow.date_borrow} #{t(".is_expired")}" %></p>
+    <p><%= t ".we_look_forward" %></p>
+    <p>
+      <%= t "borrow_mailer.update_borrow_email.review_at" %> 
+      <%= link_to t("borrow_mailer.update_borrow_email.here"), user_url(@user) %>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= "#{t(".hi_admin")} #{(Date.today - 1).strftime("%m/%Y")}" %></h1>
+    <h5><%= t ".in_month_have" %></h5>
+    <p><%= "#{t(".request_borrows")} #{Borrow.count_borrows.count}" %></p>
+    <p><%= "#{t(".accept_borrows")} #{Borrow.count_accepts.count}" %></p>
+    <p><%= "#{t(".return_borrows")} #{Borrow.count_returns.count}" %></p>
+    <p><%= t ".view_detail_at" %> <%= link_to t("borrow_mailer.update_borrow_email.here"), admin_borrows_url %></p>
+  </body>
+</html>

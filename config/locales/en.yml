@@ -156,6 +156,28 @@ en:
       borrow_success: "Your request: Borrow"
       borrow_fail: "your request is failed"
       is_borrowed: "is borrowed"
+  borrow_mailer:
+    update_borrow_email:
+      subject_mail: "Your request borrow is update"
+      hi: "Hi"
+      your_request: "Your request borrow"
+      is: "is"
+      review_at: "Review at"
+      here: "Here"
+    return_late_email:
+      expired_borrow: "Your borrow book is expired"
+      your_borrow: "Your borrow:"
+      from: "from"
+      is_expired: "is expired"
+      we_look_forward: "We look forward to your return book"
+    monthly_report_email:
+      mothly_report: "Monthly report"
+      hi_admin: "Hi Admin, this is report of"
+      in_month_have: "In month have"
+      request_borrows: "New request borrow book: "
+      accept_borrows: "Request are accepted: "
+      return_borrows: "Books are return: "
+      view_detail_at: "View detail at "
   likes:
     like:
       like: "Like"
