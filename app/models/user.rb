@@ -9,7 +9,8 @@ class User < ApplicationRecord
   enum role: %i{user manager admin}
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   scope :get_by_role, -> role {where role: role}
   scope :select_users, ->{select :id, :name, :email, :created_at}
@@ -28,5 +29,20 @@ class User < ApplicationRecord
         csv << row
       end
     end
+  end
+
+  def self.from_omniauth auth
+    data = auth.info
+    user = User.where(email: data["email"]).first
+
+    unless user
+      user = User.create(
+        uid: auth.uid,
+        name: data["name"],
+        email: data["email"],
+        password: Devise.friendly_token[0,20]
+      )
+    end
+    user
   end
 end
