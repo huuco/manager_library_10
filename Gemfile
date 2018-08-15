@@ -22,6 +22,8 @@ gem "bootstrap", "~> 4.1.1"
 gem "font-awesome-rails"
 gem "jquery-rails"
 gem "bootsnap", ">= 1.1.0", require: false
+gem "whenever", :require => false
+gem "sidekiq"
 gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 
 group :development, :test do
