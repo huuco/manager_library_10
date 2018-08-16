@@ -15,15 +15,17 @@ class Admin::BorrowsController < AdminController
 
   def update
     @borrow = Borrow.get_borrow params[:id]
-    if @borrow.book_status == 1 && params[:status] == "active"
-      @borrow.book.toggle! :status
-      update_borrow @borrow
-    elsif @borrow.book_status == 0 && params[:status] == "returned"
-      @borrow.book.toggle! :status
-      @borrow.update_attributes date_return: Date.today
-      update_borrow @borrow
-    elsif params[:status] == "refuse"
-      update_borrow @borrow
+    unless @borrow.cancelled? || @borrow.refuse?
+      if @borrow.book_status && params[:status] == "active"
+        @borrow.book.toggle! :status
+        update_borrow @borrow
+      elsif !@borrow.book_status && params[:status] == "returned"
+        @borrow.book.toggle! :status
+        @borrow.update_attributes date_return: Date.today
+        update_borrow @borrow
+      elsif params[:status] == "refuse"
+        update_borrow @borrow
+      end
     end
     respond_to do |format|
       format.html {redirect_to admin_borrows_path}

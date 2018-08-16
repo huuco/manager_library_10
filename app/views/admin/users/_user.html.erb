@@ -3,7 +3,7 @@
     class: "text-dark" %></td>
   <td class="col-4"><%= user.email %></td>
   <td class="col-2 text-center"><%= user.created_at.strftime("%d-%m-%Y") %></td>
-  <td class="col-1 text-center"></td>
-  <td class="col-1 text-center"></td>
-  <td class="col-1 text-center"></td>
+  <td class="col-1 text-center"><%= user.borrows.length %></td>
+  <td class="col-1 text-center"><%= user.borrows.where(status: :active).length %></td>
+  <td class="col-1 text-center"><%= user.borrows.where(status: :lated).length %></td>
 </tr>

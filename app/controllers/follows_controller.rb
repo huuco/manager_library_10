@@ -2,8 +2,10 @@ class FollowsController < ApplicationController
   before_action :get_book, :user_signed_in?
 
   def create
-    @follow = current_user.follows.build
-    @follow.book = @book
+    unless followed? @book.id
+      @follow = current_user.follows.build
+      @follow.book = @book
+    end 
     respond_to {|format| format.js} if @follow.save
   end
 
