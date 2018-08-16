@@ -6,8 +6,14 @@ class Borrow < ApplicationRecord
 
   validates :date_borrow, :borrow_days, presence: true
 
+  scope :get_borrow, (lambda do |bor_id|
+    select("borrows.*, users.id AS user_id, users.name AS user_name,
+      books.id AS book_id, books.title AS book_title, books.status AS book_status")
+    .joins(:user, :book).find_by id: bor_id
+  end)
   scope :search_borrows, (lambda do |params|
-    select("borrows.*, users.name AS user_name, books.title AS book_title")
+    select("borrows.*, users.id AS user_id, users.name AS user_name,
+      books.id AS book_id, books.title AS book_title, books.status AS book_status")
     .joins(:user, :book)
     .where("users.name LIKE ? AND books.title LIKE ?",
       "%#{params[:user_name]}%", "%#{params[:book_title]}%")

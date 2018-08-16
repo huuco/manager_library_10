@@ -1,3 +1,9 @@
+<% provide :title, t(".all_publishers") %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= t ".all_publishers" %></li>
+</nav>
 <div class="row col-md-12">
   <% @publishers.each do |pub| %>
     <div class="col-md-4">

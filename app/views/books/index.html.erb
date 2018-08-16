@@ -1,4 +1,10 @@
 <% provide(:title, t("admin.books.index.books")) %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= t ".books" %></li>
+  </ol>
+</nav>
 <div class="row col-md-12">
   <div class="my-3">
     <h5 id="result">

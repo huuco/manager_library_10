@@ -1,3 +1,9 @@
+<% provide :title, t(".all_authors") %>
+<nav aria-label="breadcrumb" class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=  t ".all_authors" %></li>
+</nav>
 <div class="row col-md-12">
   <% @authors.each do |aut| %>
     <div class="col-md-4">

@@ -2,9 +2,8 @@
 <nav aria-label="breadcrumb" class="col-md-12">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to t("home"), root_path %></li>
-    <li class="breadcrumb-item active" aria-current="page">
-      <%= @publisher.name %>
-    </li>
+    <li class="breadcrumb-item"><%= link_to t(".publishers"), publishers_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @publisher.name %></li>
 </nav>
 <h3><%= @publisher.name %></h3>
 <div class="row col-md-12">
