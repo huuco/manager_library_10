@@ -14,18 +14,27 @@ class Admin::BorrowsController < AdminController
   end
 
   def update
-    @borrow = Borrow.find_by id: params[:id]
-    book = @borrow.book
-    if @borrow.update_attributes status: params[:status]
-      unless params[:status] == "refuse"
-        book.toggle! :status
-        @borrow.update_attributes date_return: Date.today if params[:status] == "returned"
-      end
-      BorrowMailer.update_borrow_email(@borrow.user, @borrow).deliver_later
+    @borrow = Borrow.get_borrow params[:id]
+    if @borrow.book_status == 1 && params[:status] == "active"
+      @borrow.book.toggle! :status
+      update_borrow @borrow
+    elsif @borrow.book_status == 0 && params[:status] == "returned"
+      @borrow.book.toggle! :status
+      @borrow.update_attributes date_return: Date.today
+      update_borrow @borrow
+    elsif params[:status] == "refuse"
+      update_borrow @borrow
     end
     respond_to do |format|
       format.html {redirect_to admin_borrows_path}
       format.js
     end
+  end
+
+  private
+
+  def update_borrow borrow
+    borrow.update_attributes status: params[:status]
+    BorrowMailer.update_borrow_email(borrow.user, borrow).deliver_later
   end
 end

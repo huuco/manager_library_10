@@ -2,10 +2,11 @@
 <nav aria-label="breadcrumb" class="col-md-12">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
-    <li class="breadcrumb-item"><%= link_to t("_users"), admin_users_path %></li></li>
-    <li class="breadcrumb-item active" aria-current="page">Data</li>
+    <li class="breadcrumb-item active" aria-current="page"><%= t(".borrows") %></li>
   </ol>
 </nav>
+<%= line_chart Borrow.group(:status).group_by_day(:created_at).count %>
+<h4><%= t ".chart_borrow" %></h4>
 <div class="row col-md-12">
   <%= link_to content_tag(:i, t(".filter"), class: "fa fa-filter"), "",
     class: "btn filter-show" %>
@@ -27,7 +28,7 @@
           <div class="col-md-2">
             <%= label_tag :status, t(".status") %>
             <%= select_tag :status,
-                options_for_select([:waitting, :active, :refuse, :cancelled, :returned]),
+                options_for_select([:waitting, :active, :refuse, :cancelled, :returned, :lated]),
                 prompt: "Status", class: "form-control" %>
           </div>
           <div class="col-md-2 px-1">
@@ -64,7 +65,7 @@
     </tbody>
   </table>
   <div id="pagination">
-  <%= paginate @borrows, remote: true, window: 2, theme: "twitter-bootstrap-4",
-    pagination_class: "justify-content-center" %>
+    <%= paginate @borrows, remote: true, window: 2, theme: "twitter-bootstrap-4",
+      pagination_class: "justify-content-center" %>
   </div>
 </div>
