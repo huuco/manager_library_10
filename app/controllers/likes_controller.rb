@@ -2,8 +2,10 @@ class LikesController < ApplicationController
   before_action :get_book, :user_signed_in?
 
   def create
-    @like = current_user.likes.build
-    @like.book = @book
+    unless liked? @book.id
+      @like = current_user.likes.build
+      @like.book = @book
+    end
     respond_to {|format| format.js} if @like.save
   end
 

@@ -12,14 +12,14 @@
       <%= link_to book.author_name, author_path(book.author_id), class: "text-dark" %>
     </p>
     <div class="book-nav row col-md-12 ml-1">
-      <p id="btn-follow-<%= book.id %>" class="col-md-4 my-1 px-0"> 
+      <p class="col-md-4 my-1 px-0 btn-follow-<%= book.id %>"> 
         <% if user_signed_in? && followed?(book.id) %>
           <%= render partial: "follows/unfollow", locals: {book: book} %>
         <% else %>
           <%= render partial: "follows/follow", locals: {book: book} %>
         <% end %>
       </p>
-      <p id="btn-like-<%= book.id %>" class="col-md-4 my-1 px-0">
+      <p class="col-md-4 my-1 px-0 btn-like-<%= book.id %>">
         <% if user_signed_in? && liked?(book.id) %>
           <%= render partial: "likes/unlike", locals: {book: book} %>
         <% else %>
