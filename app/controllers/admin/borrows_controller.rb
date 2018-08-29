@@ -37,6 +37,6 @@ class Admin::BorrowsController < AdminController
 
   def update_borrow borrow
     borrow.update_attributes status: params[:status]
-    BorrowMailer.update_borrow_email(borrow.user, borrow).deliver_later
+    # BorrowMailer.update_borrow_email(borrow.user, borrow).deliver_now
   end
 end

@@ -31,6 +31,7 @@ gem "jquery-rails"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "whenever", :require => false
 gem "sidekiq"
+gem "social-share-button"
 gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 
 group :development, :test do
