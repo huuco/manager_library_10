@@ -73,3 +73,13 @@ th, td {
 .dropdown-menu .show > .dropdown-toggle::after{
     transform: rotate(-90deg);
 }
+
+$size: 34px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}
