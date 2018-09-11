@@ -11,6 +11,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+  
+  validates :email, length: {maximum: 125}
+  validates :password, presence: true,
+    length: {minimum: 6}, allow_nil: true
 
   scope :get_by_role, -> role {where role: role}
   scope :select_users, ->{includes(:borrows).select :id, :name, :email, :created_at}

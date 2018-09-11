@@ -37,6 +37,10 @@ gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 group :development, :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "rspec-rails", "~> 3.7"
+  gem "shoulda-matchers", "~> 3.1"
+  gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
 group :development do
