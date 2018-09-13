@@ -2,8 +2,7 @@
 <nav aria-label="breadcrumb" class="col-md-12">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to t("home"), admin_root_path %></li>
-    <li class="breadcrumb-item"><%= link_to t(".publishers"), admin_publishers_path %></li></li>
-    <li class="breadcrumb-item active" aria-current="page">Data</li>
+    <li class="breadcrumb-item active" aria-current="page"><%= t ".publishers" %></li>
   </ol>
 </nav>
 <h5 id="result" class="col-md-12"><%= "List have #{@publishers.total_count} publishers" %></h5>

@@ -5,6 +5,8 @@ ruby "2.5.1"
 
 gem "rails", "~> 5.2.0"
 gem "cancancan"
+gem "chartkick"
+gem "groupdate"
 gem "config"
 gem "devise"
 gem "figaro"

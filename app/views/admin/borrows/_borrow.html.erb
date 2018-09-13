@@ -1,6 +1,6 @@
-<td><%= link_to borrow.user.name, admin_user_path(borrow.user),
+<td><%= link_to borrow.user_name, admin_user_path(borrow.user_id),
   class: "text-dark" %></td>
-<td><%= link_to borrow.book.title, admin_book_path(borrow.book),
+<td><%= link_to borrow.book_title, admin_book_path(borrow.book_id),
   class: "text-dark" %></td>
 <td><%= borrow.date_borrow %></td>
 <td><%= borrow.borrow_days %></td>
@@ -8,11 +8,13 @@
 <td><%= borrow.date_return %></td>
 <td>
   <% if borrow.waitting? %>
-    <%= link_to t(".accept"), admin_borrow_path(borrow, params.permit().merge(status: :active)),
-      remote: true, method: :put, class: "" %>
+    <% if borrow.book_status %>
+      <%= link_to t(".accept"), admin_borrow_path(borrow, params.permit().merge(status: :active)),
+        remote: true, method: :put, class: "" %>
+    <% end %>
     <%= link_to t(".refuse"), admin_borrow_path(borrow, params.permit().merge(status: :refuse)),
       remote: true, method: :put, class: "text-warning" %>
-  <% elsif borrow.active? %>
+  <% elsif borrow.active? || borrow.lated? %>
     <%= link_to t(".return"), admin_borrow_path(borrow, params.permit().merge(status: :returned)),
       remote: true, method: :put, class: "text-success" %>
   <% end %>
