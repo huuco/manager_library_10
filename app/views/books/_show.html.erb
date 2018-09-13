@@ -24,7 +24,7 @@
           <%= render partial: "likes/like", locals: {book: @book} %>
         <% end %>
       </p>
-      <div class="col-md-12 ">
+      <div class="col-md-12">
         <% if @book.status %>
           <% if user_signed_in? && waitting_borrow?(@book.id) %>
             <%= t ".waitting" %>
@@ -36,6 +36,9 @@
         <% else %>
           <%= t ".is_borrowed" %>
         <% end %>
+      </div>
+      <div class="col-md-12">
+        <%= social_share_button_tag(@book.title) %>
       </div>
     </div>
   </div>

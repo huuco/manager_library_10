@@ -15,14 +15,14 @@
     </h6>
     <p class="b-d-card mb-2"><%= book.describe %></p>
     <div class="row">
-      <p id="btn-follow-<%= book.id %>" class="col-md-4 pr-0"> 
+      <p class="col-md-4 pr-0 btn-follow-<%= book.id %>"> 
         <% if user_signed_in? && followed?(book.id) %>
           <%= render partial: "follows/unfollow", locals: {book: book} %>
         <% else %>
           <%= render partial: "follows/follow", locals: {book: book} %>
         <% end %>
       </p>
-      <p id="btn-like-<%= book.id %>" class="col-md-4 pr-0">
+      <p class="col-md-4 pr-0 btn-like-<%= book.id %>">
         <% if user_signed_in? && liked?(book.id) %>
           <%= render partial: "likes/unlike", locals: {book: book} %>
         <% else %>
