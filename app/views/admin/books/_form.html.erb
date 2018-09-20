@@ -20,13 +20,15 @@
   <div class="form-group">
     <div class="input-group">
       <%= f.label :author, t(".author"), class: "col-md-3" %>
-      <%= f.collection_select :author_id, Author.all, :id, :name, {}, class: "form-control" %>
+      <%#= f.collection_select :author_id, Author.all, :id, :name, {}, class: "form-control" %>
+      <%= f.text_field :atr_name, class: "form-control", placeholder: "Jack London" %>
     </div>
   </div>
   <div class="form-group">
     <div class="input-group">
       <%= f.label :publisher, t(".publisher"), class: "col-md-3" %>
-      <%= f.collection_select :publisher_id, Publisher.all, :id, :name, {}, class: "form-control" %>
+      <%#= f.collection_select :publisher_id, Publisher.all, :id, :name, {}, class: "form-control" %>
+      <%= f.text_field :pub_name, class: "form-control", placeholder: "NXB ADBC" %>
     </div>
   </div>
   <div class="form-group">

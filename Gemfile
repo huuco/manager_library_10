@@ -33,6 +33,7 @@ gem "whenever", :require => false
 gem "sidekiq"
 gem "social-share-button"
 gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
+gem "filterrific"
 
 group :development, :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"

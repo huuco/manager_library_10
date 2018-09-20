@@ -48,4 +48,22 @@ class Book < ApplicationRecord
     .where("borrows.created_at BETWEEN (CURRENT_DATE - 30) AND (CURRENT_DATE + 1)")
     .group("books.id, author_name").order("COUNT(*) desc").limit 6
   end)
+
+  def atr_name=(name)
+    @atr_name = name
+    self.author = Author.find_or_initialize_by(name: name)
+  end
+
+  def atr_name
+    @atr_name
+  end
+
+  def pub_name=(name)
+    @pub_name = name
+    self.publisher = Publisher.find_or_initialize_by(name: name)
+  end
+
+  def pub_name
+    @pub_name
+  end
 end
